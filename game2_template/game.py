@@ -199,8 +199,13 @@ def print_menu(exits, room_items, inv_items):
         # Print the exit name and where it leads to
         print_exit(direction, exit_leads_to(exits, direction))
 
+    for item in room_items:
+        print("Take " + item["id"].upper() + " to take " + item["name"])
+
+    for item in inv_items:
+        print("Drop " + item["id"].upper() + " to drop " + item["name"])
     #
-    # COMPLETE ME!
+    # COMPLETED
     #
     
     print("What do you want to do?")
