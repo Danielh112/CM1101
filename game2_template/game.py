@@ -37,100 +37,101 @@ def list_of_items(items):
      
 
 def print_room_items(room):
-    """This function titem_idakes a room as an input and nicely displays a list of items
+    """This function takes a room as an input and nicely displays a list of items
     found in this room (followed by a blank line). If there are no items in
     the room, nothing is printed. See map.py for the definition of a room, and
     items.py for the definition of an item. This function uses list_of_items()
     to produce a comma-separated list of item names. For example:
-
     >>> print_room_items(rooms["Reception"])
     There is a pack of biscuits, a student handbook here.
     <BLANKLINE>
-
     >>> print_room_items(rooms["Office"])
     There is a pen here.
     <BLANKLINE>
-
     >>> print_room_items(rooms["Admins"])
-
     (no output)
-
     Note: <BLANKLINE> here means that doctest should expect a blank line.
-
     """
-    pass
+    items = room["items"]
+    if 0 == len(items):
+        return
+    print ("There is" + list_of_items(items) + "here")
+    print()
 
 
 def print_inventory_items(items):
     """This function takes a list of inventory items and displays it nicely, in a
     manner similar to print_room_items(). The only difference is in formatting:
     print "You have ..." instead of "There is ... here.". For example:
-
     >>> print_inventory_items(inventory)
     You have id card, laptop, money.
     <BLANKLINE>
-
     """
-    pass
+    items = room["items"]
+    if 0 == len(items):
+        return
+    print ("You have" + list_of_items(items))
+    print()
 
 
 def print_room(room):
     """This function takes a room as an input and nicely displays its name
-    and description. The room argument is a dictionary with entries "name",
-    "description" etc. (see map.py for the definition). The name of the room
-    is printed in all capitals and framed by blank lines. Then follows the
-    description of the room and a blank line again. If there are any items
-    in the room, the list of items is printed next followed by a blank line
-    (use print_room_items() for this). For example:
-
-    >>> print_room(rooms["Office"])
-    <BLANKLINE>
-    THE GENERAL OFFICE
-    <BLANKLINE>
-    You are standing next to the cashier's till at
-    30-36 Newport Road. The cashier looks at you with hope
-    in their eyes. If you go west you can return to the
-    Queen's Buildings.
-    <BLANKLINE>
-    There is a pen here.
-    <BLANKLINE>
-
-    >>> print_room(rooms["Reception"])
-    <BLANKLINE>
-    RECEPTION
-    <BLANKLINE>
-    You are in a maze of twisty little passages, all alike.
-    Next to you is the School of Computer Science and
-    Informatics reception. The receptionist, Matt Strangis,
-    seems to be playing an old school text-based adventure
-    game on his computer. There are corridors leading to the
-    south and east. The exit is to the west.
-    <BLANKLINE>
-    There is a pack of biscuits, a student handbook here.
-    <BLANKLINE>
-
-    >>> print_room(rooms["Admins"])
-    <BLANKLINE>
-    MJ AND SIMON'S ROOM
-    <BLANKLINE>
-    You are leaning agains the door of the systems managers'
-    room. Inside you notice Matt "MJ" John and Simon Jones. They
-    ignore you. To the north is the reception.
-    <BLANKLINE>
-
-    Note: <BLANKLINE> here means that doctest should expect a blank line.
-    """
-    # Display room name
-    print()
-    print(room["name"].upper())
-    print()
-    # Display room description
-    print(room["description"])
-    print()
-
-    #
-    # COMPLETE ME!
-    #
+        and description. The room argument is a dictionary with entries "name",
+        "description" etc. (see map.py for the definition). The name of the room
+        is printed in all capitals and framed by blank lines. Then follows the
+        description of the room and a blank line again. If there are any items
+        in the room, the list of items is printed next followed by a blank line
+        (use print_room_items() for this). For example:
+    
+        >>> print_room(rooms["Office"])
+        <BLANKLINE>
+        THE GENERAL OFFICE
+        <BLANKLINE>
+        You are standing next to the cashier's till at
+        30-36 Newport Road. The cashier looks at you with hope
+        in their eyes. If you go west you can return to the
+        Queen's Buildings.
+        <BLANKLINE>
+        There is a pen here.
+        <BLANKLINE>
+    
+        >>> print_room(rooms["Reception"])
+        <BLANKLINE>
+        RECEPTION
+        <BLANKLINE>
+        You are in a maze of twisty little passages, all alike.
+        Next to you is the School of Computer Science and
+        Informatics reception. The receptionist, Matt Strangis,
+        seems to be playing an old school text-based adventure
+        game on his computer. There are corridors leading to the
+        south and east. The exit is to the west.
+        <BLANKLINE>
+        There is a pack of biscuits, a student handbook here.
+        <BLANKLINE>
+    
+        >>> print_room(rooms["Admins"])
+        <BLANKLINE>
+        MJ AND SIMON'S ROOM
+        <BLANKLINE>
+        You are leaning agains the door of the systems managers'
+        room. Inside you notice Matt "MJ" John and Simon Jones. They
+        ignore you. To the north is the reception.
+        <BLANKLINE>
+    
+        Note: <BLANKLINE> here means that doctest should expect a blank line.
+        """
+        # Display room name
+        print()
+        print(room["name"].upper())
+        print()
+        # Display room description
+        print(room["description"])
+        print()
+        if rooms[room["items"]] != "":
+            print_room_items(rooms[room])
+            print()
+        # COMPLETE ME!
+        #
 
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
