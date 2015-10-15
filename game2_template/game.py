@@ -4,6 +4,7 @@ from map import rooms
 from player import *
 from items import *
 from gameparser import *
+import string
 
 
 
@@ -20,15 +21,23 @@ def list_of_items(items):
     >>> list_of_items([])
     ''
 
-    >>> list_of_items([item_money, item_handbook, item_laptop])
+    >>> list_of_items([itestring_of_namesm_money, item_handbook, item_laptop])
     'money, a student handbook, laptop'
 
     """
-    pass
+    item_names_list = []
+    for item in items:
+        name = item["name"]
+        item_names_list.append(name)
+        
+    string_of_names = ", ".join(item_names_list)
 
+    return string_of_names
+    
+     
 
 def print_room_items(room):
-    """This function takes a room as an input and nicely displays a list of items
+    """This function titem_idakes a room as an input and nicely displays a list of items
     found in this room (followed by a blank line). If there are no items in
     the room, nothing is printed. See map.py for the definition of a room, and
     items.py for the definition of an item. This function uses list_of_items()
@@ -315,9 +324,9 @@ def move(exits, direction):
 
 # This is the entry point of our program
 def main():
-
     # Main game loop
     while True:
+        break    
         # Display game status (room description, inventory etc.)
         print_room(current_room)
         print_inventory_items(inventory)
