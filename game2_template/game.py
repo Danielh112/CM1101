@@ -231,7 +231,15 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    pass
+     #Add in a mass limit, Q9 in lab exercise, each item is assigned a mass, prevent player from picking up items if mass > 3
+    inventory_mass = 0.0
+    inventory_mass = inventory_mass + items["mass"]
+    if inventory_mass > 3.0:
+        print("You cannot carry more stuff")
+    else:
+        #Take item function here?
+
+
     
 
 def execute_drop(item_id):
