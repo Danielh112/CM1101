@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 from map import rooms
 from player import *
 from items import *
@@ -21,20 +19,18 @@ def list_of_items(items):
     >>> list_of_items([])
     ''
 
-    >>> list_of_items([itestring_of_namesm_money, item_handbook, item_laptop])
+    >>> list_of_items([item_money, item_handbook, item_laptop])
     'money, a student handbook, laptop'
 
     """
-    item_names_list = []
+    item_names = []
     for item in items:
-        name = item["name"]
-        item_names_list.append(name)
-        
-    string_of_names = ", ".join(item_names_list)
+        item_names.append(item["name"])
 
-    return string_of_names
-    
-     
+    item_name_string = ", ".join(item_names)
+    return item_name_string
+
+
 
 def print_room_items(room):
     """This function takes a room as an input and nicely displays a list of items
@@ -49,14 +45,11 @@ def print_room_items(room):
     There is a pen here.
     <BLANKLINE>
     >>> print_room_items(rooms["Admins"])
-    (no output)
-    Note: <BLANKLINE> here means that doctest should expect a blank line.
+
     """
-    items = room["items"]
-    if 0 == len(items):
-        return
-    print ("There is" + list_of_items(items) + "here")
-    print()
+    room_items = room["items"]
+    if not (len(room_items) == 0):
+        print ("There is " + list_of_items(room_items) + " here.\n")
 
 
 def print_inventory_items(items):
@@ -67,69 +60,60 @@ def print_inventory_items(items):
     You have id card, laptop, money.
     <BLANKLINE>
     """
-    items = room["items"]
-    if 0 == len(items):
-        return
-    print ("You have" + list_of_items(items))
-    print()
+    inventory = items
+    if not (len(inventory) == 0):
+        print ("You have " + list_of_items(inventory) + ".\n")
 
 
 def print_room(room):
     """This function takes a room as an input and nicely displays its name
-        and description. The room argument is a dictionary with entries "name",
-        "description" etc. (see map.py for the definition). The name of the room
-        is printed in all capitals and framed by blank lines. Then follows the
-        description of the room and a blank line again. If there are any items
-        in the room, the list of items is printed next followed by a blank line
-        (use print_room_items() for this). For example:
-    
-        >>> print_room(rooms["Office"])
-        <BLANKLINE>
-        THE GENERAL OFFICE
-        <BLANKLINE>
-        You are standing next to the cashier's till at
-        30-36 Newport Road. The cashier looks at you with hope
-        in their eyes. If you go west you can return to the
-        Queen's Buildings.
-        <BLANKLINE>
-        There is a pen here.
-        <BLANKLINE>
-    
-        >>> print_room(rooms["Reception"])
-        <BLANKLINE>
-        RECEPTION
-        <BLANKLINE>
-        You are in a maze of twisty little passages, all alike.
-        Next to you is the School of Computer Science and
-        Informatics reception. The receptionist, Matt Strangis,
-        seems to be playing an old school text-based adventure
-        game on his computer. There are corridors leading to the
-        south and east. The exit is to the west.
-        <BLANKLINE>
-        There is a pack of biscuits, a student handbook here.
-        <BLANKLINE>
-    
-        >>> print_room(rooms["Admins"])
-        <BLANKLINE>
-        MJ AND SIMON'S ROOM
-        <BLANKLINE>
-        You are leaning agains the door of the systems managers'
-        room. Inside you notice Matt "MJ" John and Simon Jones. They
-        ignore you. To the north is the reception.
-        <BLANKLINE>
-    
-        Note: <BLANKLINE> here means that doctest should expect a blank line.
-        """
-        # Display room name
-    print()
-    print(room["name"].upper())
-    print()
-    # Display room description
-    print(room["description"])
-    print()
-    if rooms[room["items"]] != "":
-        print_room_items(rooms[room])
-        print()
+    and description. The room argument is a dictionary with entries "name",
+    "description" etc. (see map.py for the definition). The name of the room
+    is printed in all capitals and framed by blank lines. Then follows the
+    description of the room and a blank line again. If there are any items
+    in the room, the list of items is printed next followed by a blank line
+    (use print_room_items() for this). For example:
+
+    >>> print_room(rooms["Office"])
+    <BLANKLINE>
+    THE GENERAL OFFICE
+    <BLANKLINE>
+    You are standing next to the cashier's till at
+    30-36 Newport Road. The cashier looks at you with hope
+    in their eyes. If you go west you can return to the
+    Queen's Buildings.
+    <BLANKLINE>
+    There is a pen here.
+    <BLANKLINE>
+
+    >>> print_room(rooms["Reception"])
+    <BLANKLINE>
+    RECEPTION
+    <BLANKLINE>
+    You are in a maze of twisty little passages, all alike.
+    Next to you is the School of Computer Science and
+    Informatics reception. The receptionist, Matt Strangis,
+    seems to be playing an old school text-based adventure
+    game on his computer. There are corridors leading to the
+    south and east. The exit is to the west.
+    <BLANKLINE>
+    There is a pack of biscuits, a student handbook here.
+    <BLANKLINE>
+
+    >>> print_room(rooms["Admins"])
+    <BLANKLINE>
+    MJ AND SIMON'S ROOM
+    <BLANKLINE>
+    You are leaning agains the door of the systems managers'
+    room. Inside you notice Matt "MJ" John and Simon Jones. They
+    ignore you. To the north is the reception.
+    <BLANKLINE>
+
+    Note: <BLANKLINE> here means that doctest should expect a blank line.
+    """
+    print("\n" + room["name"].upper() + "\n")
+    print(room["description"] + "\n")
+    print_room_items(room)
 
 
 def exit_leads_to(exits, direction):
@@ -204,10 +188,7 @@ def print_menu(exits, room_items, inv_items):
 
     for item in inv_items:
         print("Drop " + item["id"].upper() + " to drop " + item["name"])
-    #
-    # COMPLETED
-    #
-    
+
     print("What do you want to do?")
 
 
@@ -236,7 +217,8 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
-    pass
+    global current_room
+    current_room = rooms[current_room["exits"][direction]]
 
 
 def execute_take(item_id):
@@ -245,12 +227,12 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-     #Add in a mass limit, Q9 in lab exercise, each item is assigned a mass, prevent player from picking up items if mass > 3
-    inventory_mass = 0.0
-    inventory_mass = inventory_mass + items["mass"]
-    if inventory_mass > 3.0:
-        print("You cannot carry more stuff")
-        #Take item function here?
+    for item in current_room["items"]:
+        if item["id"] == item_id:
+            inventory.append(item)
+            current_room["items"].remove(item)
+            return
+    print("You cannot take that")
 
 
 def execute_drop(item_id):
@@ -258,17 +240,20 @@ def execute_drop(item_id):
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
-    pass
-    
+    for item in inventory:
+        if item["id"] == item_id:
+            current_room["items"].append(item)
+            inventory.remove(item)
+            return
+    print("You cannot drop that.")
+
 
 def execute_command(command):
     """This function takes a command (a list of words as returned by
     normalise_input) and, depending on the type of action (the first word of
     the command: "go", "take", or "drop"), executes either execute_go,
     execute_take, or execute_drop, supplying the second word as the argument.
-
     """
-
     if 0 == len(command):
         return
 
@@ -336,7 +321,6 @@ def move(exits, direction):
 def main():
     # Main game loop
     while True:
-        break    
         # Display game status (room description, inventory etc.)
         print_room(current_room)
         print_inventory_items(inventory)
@@ -354,4 +338,3 @@ def main():
 # See https://docs.python.org/3.4/library/__main__.html for explanation
 if __name__ == "__main__":
     main()
-
