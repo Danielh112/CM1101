@@ -121,17 +121,16 @@ def print_room(room):
         Note: <BLANKLINE> here means that doctest should expect a blank line.
         """
         # Display room name
+    print()
+    print(room["name"].upper())
+    print()
+    # Display room description
+    print(room["description"])
+    print()
+    if rooms[room["items"]] != "":
+        print_room_items(rooms[room])
         print()
-        print(room["name"].upper())
-        print()
-        # Display room description
-        print(room["description"])
-        print()
-        if rooms[room["items"]] != "":
-            print_room_items(rooms[room])
-            print()
-        # COMPLETE ME!
-        #
+
 
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
@@ -246,11 +245,8 @@ def execute_take(item_id):
     inventory_mass = inventory_mass + items["mass"]
     if inventory_mass > 3.0:
         print("You cannot carry more stuff")
-    else:
         #Take item function here?
 
-
-    
 
 def execute_drop(item_id):
     """This function takes an item_id as an argument and moves this item from the
