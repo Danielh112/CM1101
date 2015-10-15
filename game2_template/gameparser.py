@@ -27,7 +27,14 @@ def filter_words(words, skip_words):
     ['go', 'passage', 'south']
 
     """
-    pass
+
+    word_list=[]
+    for word in words:
+        if not (word in skip_words):
+            if word.strip() != "":
+                word_list.append(word)
+    return word_list
+
 
     
 def remove_punct(text):
@@ -78,6 +85,8 @@ def normalise_input(user_input):
     """
     # Remove punctuation and convert to lower case
     no_punct = remove_punct(user_input).lower()
+    final=no_punct.split(" ")
+    return filter_words(final, skip_words)
 
     #
     # COMPLETE ME!
