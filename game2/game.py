@@ -240,7 +240,7 @@ def execute_take(item_id):
             inventory_mass += item["mass"]
             room_inventory.remove(item)
         else:
-            print("You are carry too much.")
+            print("You are carrying too much.")
     else:
         print("You cannot take that.")
 
