@@ -57,12 +57,13 @@ def print_inventory_items(items):
     manner similar to print_room_items(). The only difference is in formatting:
     print "You have ..." instead of "There is ... here.". For example:
     >>> print_inventory_items(inventory)
-    You have id card, laptop, money.
+    You have id card, laptop, money with a combined weight of 3.7Kg.
     <BLANKLINE>
     """
     inventory = items
     if not (len(inventory) == 0):
-        print ("You have " + list_of_items(inventory) + ".\n")
+        print ("You have " + list_of_items(inventory) +
+               " with a combined weight of " + str(inventory_mass) + "Kg.\n")
 
 
 def print_room(room):
@@ -230,12 +231,18 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    for item in current_room["items"]:
-        if item["id"] == item_id:
+    item = items[item_id]
+    room_inventory = current_room["items"]
+    if item in room_inventory:
+        if (inventory_mass + item["mass"] <= 5.0):
             inventory.append(item)
-            current_room["items"].remove(item)
-            return
-    print("You cannot take that")
+            global inventory_mass
+            inventory_mass += item["mass"]
+            room_inventory.remove(item)
+        else:
+            print("You are carry too much.")
+    else:
+        print("You cannot take that.")
 
 
 def execute_drop(item_id):
@@ -243,12 +250,15 @@ def execute_drop(item_id):
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
-    for item in inventory:
-        if item["id"] == item_id:
-            current_room["items"].append(item)
-            inventory.remove(item)
-            return
-    print("You cannot drop that.")
+    item = items[item_id]
+    room_inventory = current_room["items"]
+    if item in inventory:
+        room_inventory.append(item)
+        global inventory_mass
+        inventory_mass -= item["mass"]
+        inventory.remove(item)
+    else:
+        print("You cannot drop that.")
 
 
 def execute_command(command):
@@ -319,11 +329,22 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
+def check_victory():
+    if len(rooms["Reception"]["items"]) == 6:
+        print("You dropped all the items of at reception! You win.")
+        return True
+    else:
+        return False
+
 
 # This is the entry point of our program
 def main():
+    print("Take all the items to Reception.")
     # Main game loop
     while True:
+        #Check to see if player has won the game.
+        if check_victory():
+            break
         # Display game status (room description, inventory etc.)
         print_room(current_room)
         print_inventory_items(inventory)
