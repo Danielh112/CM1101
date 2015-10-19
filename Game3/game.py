@@ -6,7 +6,7 @@ from items import *
 from gameparser import *
 import string
 
-def turn_On_Power():
+def Turn_On_Power():
     """This function is called to turn on the electricty so that the player can enter the lift etc"""
 
 def Check_Power():
