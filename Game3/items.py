@@ -1,7 +1,8 @@
 item_red_flare = {
     "id" = "red flare",
     "name" = "red flare",
-    "description" = "You managed to  find the red flare. Wow aren't you a special snowflake. "
+    "description" = "You managed to  find the red flare. Wow aren't you a \
+    special snowflake. "
 }
 
 item_blue_flare = {
@@ -13,13 +14,15 @@ item_blue_flare = {
 item_pistol = {
     "id" = "pistol"
     "name" = "a pistol"
-    "description" = "You found a brand new kind of dirty pistol. Be careful! Don't kill too many people"
+    "description" = "You found a brand new kind of dirty pistol. Be careful! \
+     Don't kill too many people"
 }
 
 item_dress = {
     "id" = "dress"
     "name" = "little coctail dress"
-    "description" = "Wow you found a little pink coctail dress! It will look great with your skin complection!"
+    "description" = "Wow you found a little pink coctail dress! It will look \
+    great with your skin complection!"
 }
 
 item_shoes = {
