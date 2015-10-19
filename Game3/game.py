@@ -9,7 +9,6 @@ import string
 def turn_On_Power():
     """This function is called to turn on the electricty so that the player can enter the lift etc"""
 
-
 def Check_Power():
     """This function returns whether the power has been turned on or not"""
 
