@@ -5,7 +5,6 @@ from gameparser import *
 import string
 
 
-
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
     returns a comma-separated list of item names (as a string). For example:
@@ -29,7 +28,6 @@ def list_of_items(items):
 
     item_name_string = ", ".join(item_names)
     return item_name_string
-
 
 
 def print_room_items(room):
@@ -119,8 +117,8 @@ def print_room(room):
 
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
-    exit taken from this dictionary). It returns the name of the room into which
-    this exit leads. For example:
+    exit taken from this dictionary). It returns the name of the room into
+    which this exit leads. For example:
 
     >>> exit_leads_to(rooms["Reception"]["exits"], "south")
     "MJ and Simon's room"
@@ -155,8 +153,8 @@ def print_menu(exits, room_items, inv_items):
     and carried by the player respectively. The menu should, for each exit,
     call the function print_exit() to print the information about each exit in
     the appropriate format. The room into which an exit leads is obtained
-    using the function exit_leads_to(). Then, it should print a list of commands
-    related to items: for each item in the room print
+    using the function exit_leads_to(). Then, it should print a list of
+    commands related to items: for each item in the room print
 
     "TAKE <ITEM ID> to take <item name>."
 
@@ -164,7 +162,8 @@ def print_menu(exits, room_items, inv_items):
 
     "DROP <ITEM ID> to drop <item name>."
 
-    For example, the menu of actions available at the Reception may look like this:
+    For example, the menu of actions available at the Reception may look like
+    this:
 
     You can:
     GO EAST to your personal tutor's office.
@@ -195,10 +194,10 @@ def print_menu(exits, room_items, inv_items):
 
 def is_valid_exit(exits, chosen_exit):
     """This function checks, given a dictionary "exits" (see map.py) and
-    a players's choice "chosen_exit" whether the player has chosen a valid exit.
-    It returns True if the exit is valid, and False otherwise. Assume that
-    the name of the exit has been normalised by the function normalise_input().
-    For example:
+    a players's choice "chosen_exit" whether the player has chosen a valid
+    exit. It returns True if the exit is valid, and False otherwise. Assume
+    that the name of the exit has been normalised by the function
+    normalise_input(). For example:
 
     >>> is_valid_exit(rooms["Reception"]["exits"], "south")
     True
@@ -247,8 +246,9 @@ def execute_take(item_id):
 
 def execute_drop(item_id):
     """This function takes an item_id as an argument and moves this item from the
-    player's inventory to list of items in the current room. However, if there is
-    no such item in the inventory, this function prints "You cannot drop that."
+    player's inventory to list of items in the current room. However, if there
+    is no such item in the inventory, this function prints "You cannot drop
+    that."
     """
     item = items[item_id]
     room_inventory = current_room["items"]
@@ -329,6 +329,7 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
+
 def check_victory():
     if len(rooms["Reception"]["items"]) == 6:
         print("You dropped all the items of at reception! You win.")
@@ -342,7 +343,7 @@ def main():
     print("Take all the items to Reception.")
     # Main game loop
     while True:
-        #Check to see if player has won the game.
+        # Check to see if player has won the game.
         if check_victory():
             break
         # Display game status (room description, inventory etc.)
@@ -354,7 +355,6 @@ def main():
 
         # Execute the player's command
         execute_command(command)
-
 
 
 # Are we being run as a script? If so, run main().
