@@ -1,5 +1,4 @@
 import string
-import re
 
 # List of "unimportant" words (feel free to add more)
 skip_words = ['a', 'about', 'all', 'an', 'another', 'any', 'around', 'at',
@@ -26,15 +25,11 @@ def filter_words(words, skip_words):
 
     >>> filter_words(['how', 'about', 'i', 'go', 'through', 'that', 'little', 'passage', 'to', 'the', 'south'], skip_words)
     ['go', 'passage', 'south']
+
     """
+    pass
 
-    valid_words = []
-    for word in words:
-        if not (word in skip_words):
-                valid_words.append(word)
-    return valid_words
-
-
+    
 def remove_punct(text):
     """This function is used to remove all punctuation
     marks from a string. Spaces do not count as punctuation and should
@@ -79,8 +74,11 @@ def normalise_input(user_input):
     ['take', 'gem']
     >>> normalise_input("How about I go through that little passage to the south...")
     ['go', 'passage', 'south']
+
     """
-    no_punc = remove_punct(user_input)
-    no_punc_lower = no_punc.lower()
-    words = re.findall(r"\w+", no_punc_lower)
-    return filter_words(words, skip_words)
+    # Remove punctuation and convert to lower case
+    no_punct = remove_punct(user_input).lower()
+
+    #
+    # COMPLETE ME!
+    #
