@@ -1,14 +1,14 @@
 item_red_flare = {
     "id" = "red flare",
-    "name" = "red flare",
-    "description" = "You managed to  find the red flare. Wow aren't you a \
-    special snowflake. "
+    "name" = "a red flare",
+    "description" = "You managed to find the red flare. Wow aren't you a \
+    special snowflake!"
 }
 
 item_blue_flare = {
     "id" = "blue flare",
-    "name" = "blue flare"
-    "description" = "You even found the blue flare!Keep up the good work!"
+    "name" = "a blue flare"
+    "description" = "You even found the blue flare! Keep up the good work!"
 }
 
 item_pistol = {
@@ -20,9 +20,9 @@ item_pistol = {
 
 item_dress = {
     "id" = "dress"
-    "name" = "little coctail dress"
-    "description" = "Wow you found a little pink coctail dress! It will look \
-    great with your skin complection!"
+    "name" = "a little coctail dress"
+    "description" = "Wow you found a little pink coctail dress! It really \
+     brings out the colour in your eyes!"
 }
 
 item_shoes = {
@@ -33,18 +33,18 @@ item_shoes = {
 
 item_keys = {
     "id" = "keys"
-    "name" = "keys"
-    "description" = "I wonder if they unlock anything"
+    "name" = "a set of keys"
+    "description" = "I wonder if they unlock anything."
 }
 
 item_torch = {
     "id" = "torch"
-    "name" = "torch"
+    "name" = "a torch"
     "description" = "Oh look this torch is brighter than my future."
 }
 
 item_batteries = {
     "id" = "batteries"
-    "names" = "batteries"
+    "names" = "some batteries"
     "description" = "Why would you need batteries ?? Hmm, we'll see."
 }
