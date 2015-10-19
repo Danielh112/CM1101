@@ -6,7 +6,12 @@ from items import *
 from gameparser import *
 import string
 
+def turn_On_Power():
+    """This function is called to turn on the electricty so that the player can enter the lift etc"""
 
+
+def Check_Power():
+    """This function returns whether the power has been turned on or not"""
 
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
