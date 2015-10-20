@@ -51,7 +51,11 @@ item_batteries = {
 
 items = {
     "id": item_id,
-    "laptop": item_laptop,
-    "laptop": item_laptop,
-    "laptop": item_laptop,
+    "blue flare": item_blue_flare,
+    "pistol": item_pistol,
+    "dress": item_dress,
+    "shoes": item_shoes,
+    "keys": item_keys,
+    "torch": item_torch,
+    "batteries": item_batteries,
 }    
