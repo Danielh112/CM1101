@@ -9,18 +9,17 @@ def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
     returns a comma-separated list of item names (as a string). For example:
 
-    >>> list_of_items([item_pen, item_handbook])
-    'a pen, a student handbook'
+    >>> list_of_items([item_red_flare, item_dress])
+    'red flare, dress'
 
-    >>> list_of_items([item_id])
-    'id card'
+    >>> list_of_items([item_shoes])
+    'item_shoes'
 
     >>> list_of_items([])
     ''
 
-    >>> list_of_items([item_money, item_handbook, item_laptop])
-    'money, a student handbook, laptop'
-
+    >>> list_of_items([item_keys, item_batteries, item_pistol])
+    'keys, batteries, pistol'
     """
     item_names = []
     for item in items:
