@@ -6,7 +6,7 @@ room_lab = {
     "description":
     """You see flames flicker in the corner of the room. 
     There are holes in the wall, showing exposed wiring. 
-    Most of your equipment has been destroyed. The subject is gone. 
+    Most of your equipment has been destroyed. 
     The security door to the west of the room has been wrenched open, whereas the doors to the east (Infirmary) and north (Changing Area) remain untouched.
 """,
 
@@ -19,8 +19,8 @@ room_changingarea = {
     "name": "Changing Area",
 
     "description":
-    """This is where you and your colleagues change into your lab gear. 
-    Lockers line the west wall, numbered from 1-20. The door to the south leads to the lab""",
+    """This must be where the scientists change into their lab gear. 
+    Lockers line the west wall, numbered from 1-20. The door to the south leads to the lab.""",
 
     "exits":  {"south": "Laboratory"},
 
@@ -43,7 +43,7 @@ room_basement = {
     "name": "Storage Basement",
 
     "description":
-    """Large glass tubes line the northern end of the room. This is where you stored previous test subjects. 
+    """Large glass tubes line the northern end of the room. This looks like a storage area for test subjects. 
     The glass tube in the middle has been smashed. The tube is labelled, “Prototype - M. Morgan, ‘To all intents and purposes, a failed test subject’”. 
     The southern end of the room is lined with cupboards and cabinets. In between the cabinets is the door to the stairwell.""",
 
@@ -82,7 +82,7 @@ room_canteen = {
     "name": "Canteen",
 
     "description":
-    """The door to the canteen is locked, probably because everyone else has gone home. Your stomach rumbles, almost in response to the locked door.
+    """The door to the canteen is locked, probably because you seem to be the only one here. Your stomach rumbles, almost in response to the locked door.
 """,
 
     "exits": {"east": "Lift Floor 4", "north": "Stairs"},
@@ -94,7 +94,7 @@ room_roof = {
     "name": "Roof",
 
     "description":
-    """The helipad takes up most of the roofspace. Big time executives and government officials would use this for lab visits. You see a helicopter flying over one of the buildings on the other side of the city.
+    """The helipad takes up most of the roofspace. Big time executives and government officials must use this for lab visits. You see a helicopter flying over one of the buildings on the other side of the city.
 """,
 
     "exits": {"east": "Stairs"},
@@ -106,7 +106,7 @@ room_stairs = {
     "name": "Stairs",
 
     "description":
-    """This stairwell is looking a bit worse for wear, probably because no one actually uses the stairs. Scientists don't tend to be the fittest people. """,
+    """This stairwell is looking a bit worse for wear because no one actually uses the stairs. Scientists don't tend to be the fittest people. """,
 
     "exits": {"west": "Roof"},
 

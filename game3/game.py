@@ -21,6 +21,7 @@ def list_of_items(items):
     >>> list_of_items([item_keys, item_batteries, item_pistol])
     'keys, batteries, pistol'
     """
+
     item_names = []
     for item in items:
         item_names.append(item["name"])
