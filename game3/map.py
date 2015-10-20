@@ -14,7 +14,7 @@ room_lab = {
 
     "exits": {"east": "Infirmary", "north": "Changing Area", "west": "Lift Floor 2"},
 
-    "items": []
+    "items": [item_billy_idol_cd, item_saucepan]
 }
 
 room_changingarea = {
@@ -26,7 +26,7 @@ room_changingarea = {
 
     "exits":  {"south": "Laboratory"},
 
-    "items": []
+    "items": [item_dress, item_shoes]
 }
 
 room_armory = {
@@ -38,7 +38,7 @@ room_armory = {
 
     "exits": {"east": "Changing Area"},
 
-    "items": []
+    "items": [item_pistol, item_torch]
 }
 
 room_basement = {
@@ -51,7 +51,7 @@ room_basement = {
 
     "exits": {"south": "Lift Floor 1"},
 
-    "items": []
+    "items": [item_blue_flare]
 }
 
 room_infirmary = {
@@ -64,7 +64,7 @@ room_infirmary = {
 
     "exits": {"west": "Laboratory"},
 
-    "items": []
+    "items": [items_medipac]
 }
 
 room_lobby = {
@@ -77,7 +77,7 @@ The door to the east leads to the lift area.
 
     "exits": {"east": "Lift Floor 3"},
 
-    "items": []
+    "items": [items_red_flare]
 }
 
 room_canteen = {
@@ -89,7 +89,7 @@ room_canteen = {
 
     "exits": {"east": "Lift Floor 4", "north": "Stairs"},
 
-    "items": []
+    "items": [item_water_gun]
 }
 
 room_roof = {
@@ -112,7 +112,7 @@ room_stairs = {
 
     "exits": {"west": "Roof"},
 
-    "items": []
+    "items": [item_batteries]
 }
 
 room_lift1 = {

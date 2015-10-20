@@ -6,7 +6,7 @@ from entities import *
 import string
 
 move_commands = ["go", "flee", "leave", "move", "progress", "travel", "depart",
-                 "escape", "exit", "journey", "withdraw"]
+                 "escape", "exit", "journey", "withdraw", "run", "walk", "jog"]
 
 take_commands = ["take", "collect", "hold", "receive", "acquire", "attain",
                  "grasp", "clutch", "grasp", "grip", "obtain", "secure",
@@ -54,13 +54,17 @@ def print_room_items(room):
     There is a pack of biscuits, a student handbook here.
     <BLANKLINE>
     >>> print_room_items(rooms["Laboratory"])
+<<<<<<< HEAD
+    There is a pen here.
+=======
 
+>>>>>>> f04c796540a3319eade8f417b090654ba7501d9b
     <BLANKLINE>
     >>> print_room_items(rooms["Lift Floor 1"])
 
     """
     room_items = room["items"]
-    if not (len(room_items) == 0):
+    if (len(room_items) != 0):
         print ("There is " + list_of_items(room_items) + " here.\n")
 
 
@@ -298,6 +302,8 @@ def execute_command(command):
     the command: "go", "take", or "drop"), executes either execute_go,
     execute_take, or execute_drop, supplying the second word as the argument.
     """
+    global moves
+
     if 0 == len(command):
         return
 
@@ -374,11 +380,7 @@ def move(exits, direction):
 
 
 def check_victory():
-    if len(rooms["Reception"]["items"]) == 6:
-        print("You dropped all the items of at reception! You win.")
-        return True
-    else:
-        return False
+    return False
 
 
 # This is the entry point of our program
