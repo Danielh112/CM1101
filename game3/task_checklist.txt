@@ -1,0 +1,7 @@
+Levenshtein distance
+add support for multiple word commands (in progress)
+add pygame move display
+add entities and ability to attack entities
+add doctesting
+add searchable items
+add door/passage between rooms (possibility)
