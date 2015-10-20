@@ -39,14 +39,14 @@ def print_room_items(room):
     >>> print_room_items(rooms["Reception"])
     There is a pack of biscuits, a student handbook here.
     <BLANKLINE>
-    >>> print_room_items(rooms["Office"])
+    >>> print_room_items(rooms["Laboratory"])
     There is a pen here.
     <BLANKLINE>
-    >>> print_room_items(rooms["Admins"])
+    >>> print_room_items(rooms["Lift Floor 1"])
 
     """
     room_items = room["items"]
-    if not (len(room_items) == 0):
+    if (len(room_items) != 0):
         print ("There is " + list_of_items(room_items) + " here.\n")
 
 
