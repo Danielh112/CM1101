@@ -48,3 +48,10 @@ item_batteries = {
     "name": "some batteries",
     "description": "Why would you need batteries ?? Hmm, we'll see."
 }
+
+items = {
+    "id": item_id,
+    "laptop": item_laptop,
+    "laptop": item_laptop,
+    "laptop": item_laptop,
+}    
