@@ -54,14 +54,9 @@ def print_room_items(room):
     There is a pack of biscuits, a student handbook here.
     <BLANKLINE>
     >>> print_room_items(rooms["Laboratory"])
-<<<<<<< HEAD
-    There is a pen here.
-=======
-
->>>>>>> f04c796540a3319eade8f417b090654ba7501d9b
     <BLANKLINE>
     >>> print_room_items(rooms["Lift Floor 1"])
-
+    <BLANKLINE>
     """
     room_items = room["items"]
     if (len(room_items) != 0):

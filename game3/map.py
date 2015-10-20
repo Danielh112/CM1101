@@ -33,7 +33,7 @@ room_armory = {
     "name": "Armory",
 
     "description":
-    """Thereâ€™s a secret armory behind locker 16. Who knew?.
+    """There’s a secret armory behind locker 16. Who knew?.
     This must be for emergencies. All but one the cabinets that line all 4 walls are locked and require a keycode to open.""",
 
     "exits": {"east": "Changing Area"},
@@ -46,7 +46,7 @@ room_basement = {
 
     "description":
     """Large glass tubes line the northern end of the room. This looks like a storage area for test subjects.
-    The glass tube in the middle has been smashed. The tube is labelled, â€œPrototype - M. Morgan, â€˜To all intents and purposes, a failed test subjectâ€™â€.
+    The glass tube in the middle has been smashed. The tube is labelled, “Prototype - M. Morgan, ‘To all intents and purposes, a failed test subject’”.
     The southern end of the room is lined with cupboards and cabinets. In between the cabinets is the door to the stairwell.""",
 
     "exits": {"south": "Lift Floor 1"},
