@@ -374,11 +374,7 @@ def move(exits, direction):
 
 
 def check_victory():
-    if len(rooms["Reception"]["items"]) == 6:
-        print("You dropped all the items of at reception! You win.")
-        return True
-    else:
-        return False
+    return False
 
 
 # This is the entry point of our program

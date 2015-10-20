@@ -49,8 +49,8 @@ item_batteries = {
     "description": "Why would you need batteries ?? Hmm, we'll see."
 }
 item_water_gun = {
-     "id": "water gun"
-     "name": "a water gun"
+     "id": "water gun",
+     "name": "a water gun",
      "description": "not the most useful item in the current situation, maybe \
      you could use it in the event of a very..very small fire?"
 }
@@ -58,7 +58,7 @@ item_water_gun = {
 item_medipac = {
     "id": "medipac",
     "name": "a medipac",
-    "description" "This medipac could come in handy in the event of a zombie \
+    "description": "This medipac could come in handy in the event of a zombie \
     attack! You should keep it safe."
 }
 
@@ -70,8 +70,8 @@ item_billy_idol_cd = {
 }
 
 item_saucepan = {
-    "id": "saucepan"
-    "name": "a Saucepan"
+    "id": "saucepan",
+    "name": "a Saucepan",
     "description": "this could be used to cook food...or kill zombies, \
     you chose."
 }
