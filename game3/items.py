@@ -50,7 +50,6 @@ item_batteries = {
 }
 
 items = {
-    "id": item_id,
     "blue flare": item_blue_flare,
     "pistol": item_pistol,
     "dress": item_dress,
@@ -58,4 +57,4 @@ items = {
     "keys": item_keys,
     "torch": item_torch,
     "batteries": item_batteries,
-}    
+}
