@@ -8,7 +8,7 @@ room_lab = {
     There are holes in the wall, showing exposed wiring. 
     Most of your equipment has been destroyed. 
     The security door to the west of the room has been wrenched open, whereas the doors to the east (Infirmary) and north (Changing Area) remain untouched.
-""",
+    """,
 
     "exits": {"east": "Infirmary", "north": "Changing Area", "west": "Lift Floor 2"},
 
