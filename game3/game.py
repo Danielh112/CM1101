@@ -2,7 +2,21 @@ from map import rooms
 from player import *
 from items import *
 from gameparser import *
+from entities import *
 import string
+
+move_commands = ["go", "flee", "leave", "move", "progress", "travel", "depart",
+                 "escape", "exit", "journey", "withdraw", "run", "walk", "jog"]
+
+take_commands = ["take", "collect", "hold", "receive", "acquire", "attain",
+                 "grasp", "clutch", "grasp", "grip", "obtain", "secure",
+                 "snag", "snatch", "carry", "gain", "gather", "get"]
+
+drop_commands = ["drop", "abandon", "dump", "release", "shed", "relinquish",
+                 "unload"]
+
+attack_commands = ["attack", "ambush", "assail", "assault", "charge", "harm",
+                   "hurt", "rush"]
 
 
 def list_of_items(items):
@@ -40,7 +54,11 @@ def print_room_items(room):
     There is a pack of biscuits, a student handbook here.
     <BLANKLINE>
     >>> print_room_items(rooms["Laboratory"])
+<<<<<<< HEAD
     There is a pen here.
+=======
+
+>>>>>>> f04c796540a3319eade8f417b090654ba7501d9b
     <BLANKLINE>
     >>> print_room_items(rooms["Lift Floor 1"])
 
@@ -261,35 +279,64 @@ def execute_drop(item_id):
         print("You cannot drop that.")
 
 
+def execute_attack(entity_id, item_id):
+    """This function takes an item_id as an argument and moves this item from the
+    player's inventory to list of items in the current room. However, if there
+    is no such item in the inventory, this function prints "You cannot drop
+    that."
+    """
+    # Player attacks entity
+    entities[entity_id] -= items[item_id]["damage"]
+    if entities[entity_id]["health"] <= 0:
+        entities[entity_id]["alive"] = False
+
+    # Entity attacks player
+    health -= items[item_id]["damage"]
+    if entities[entity_id]["health"] <= 0:
+        entities[entity_id]["alive"] = False
+
+
 def execute_command(command):
     """This function takes a command (a list of words as returned by
     normalise_input) and, depending on the type of action (the first word of
     the command: "go", "take", or "drop"), executes either execute_go,
     execute_take, or execute_drop, supplying the second word as the argument.
     """
+    global moves
+
     if 0 == len(command):
         return
 
-    if command[0] == "go":
+    if command[0] in move_commands:
         if len(command) > 1:
             execute_go(command[1])
             moves += 1
         else:
             print("Go where?")
 
-    elif command[0] == "take":
+    elif command[0] in take_commands:
         if len(command) > 1:
             execute_take(command[1])
             moves += 1
         else:
             print("Take what?")
 
-    elif command[0] == "drop":
+    elif command[0] in drop_commands:
         if len(command) > 1:
             execute_drop(command[1])
             moves += 1
         else:
             print("Drop what?")
+
+    elif command[0] in attack_commands:
+        if len(command) > 2:
+            if command[1] in current_room["entities"]:
+                execute_attack(command[1], command[2])
+            elif command[2] in current_room["entities"]:
+                execute_attack(command[2], command[1])
+            moves += 1
+        else:
+            print("Attack what?")
 
     else:
         print("This makes no sense.")
@@ -333,11 +380,7 @@ def move(exits, direction):
 
 
 def check_victory():
-    if len(rooms["Reception"]["items"]) == 6:
-        print("You dropped all the items of at reception! You win.")
-        return True
-    else:
-        return False
+    return False
 
 
 # This is the entry point of our program
