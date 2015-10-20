@@ -6,7 +6,7 @@ from entities import *
 import string
 
 move_commands = ["go", "flee", "leave", "move", "progress", "travel", "depart",
-                 "escape", "exit", "journey", "withdraw"]
+                 "escape", "exit", "journey", "withdraw", "run", "walk", "jog"]
 
 take_commands = ["take", "collect", "hold", "receive", "acquire", "attain",
                  "grasp", "clutch", "grasp", "grip", "obtain", "secure",
@@ -298,6 +298,8 @@ def execute_command(command):
     the command: "go", "take", or "drop"), executes either execute_go,
     execute_take, or execute_drop, supplying the second word as the argument.
     """
+    global moves
+
     if 0 == len(command):
         return
 
@@ -374,11 +376,7 @@ def move(exits, direction):
 
 
 def check_victory():
-    if len(rooms["Reception"]["items"]) == 6:
-        print("You dropped all the items of at reception! You win.")
-        return True
-    else:
-        return False
+    return False
 
 
 # This is the entry point of our program

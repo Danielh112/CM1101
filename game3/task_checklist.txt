@@ -1,7 +1,7 @@
 Levenshtein distance
-add support for multiple word commands (in progress)
+add support for multiple word commands (Ryan)
 add pygame move display
-add entities and ability to attack entities
+add entities and ability to attack entities (Ryan)
 add doctesting
-add searchable items
+add searchable items (I'll try this, Aaron)
 add door/passage between rooms (possibility)
