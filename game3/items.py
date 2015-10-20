@@ -15,7 +15,7 @@ item_pistol = {
     "id" = "pistol"
     "name" = "a pistol"
     "description" = "You found a brand new kind of dirty pistol. Be careful! \
-     Don't kill too many people"
+     Don't kill too many people."
 }
 
 item_dress = {
