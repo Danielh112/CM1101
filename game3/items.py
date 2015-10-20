@@ -63,7 +63,7 @@ item_medipac = {
 }
 
 item_billy_idol_cd = {
-    "id": "billy idol cd",
+    "id": "cd",
     "name": "a Billy Idol CD",
     "description": "Your favourite CD, a must have in the event of a zombie \
     apocalypse"
