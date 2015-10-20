@@ -5,18 +5,17 @@ from gameparser import *
 from entities import *
 import string
 
-move_commands = ["go", "flee", "leave", "move", "progress", "travel", "depart",
-                 "escape", "exit", "journey", "withdraw", "run", "walk", "jog"]
+verbs = {
+    "move":   ["go", "move", "travel", "run", "walk", "jog", "flee",
+               "progress", "escape", "journey"],
 
-take_commands = ["take", "collect", "hold", "receive", "acquire", "attain",
-                 "grasp", "clutch", "grasp", "grip", "obtain", "secure",
-                 "snag", "snatch", "carry", "gain", "gather", "get"]
+    "take":   ["take", "collect", "acquire", "attain", "obtain", "carry",
+               "grasp", "clutch", "grip", "snatch", "gain", "grab"],
 
-drop_commands = ["drop", "abandon", "dump", "release", "shed", "relinquish",
-                 "unload"]
+    "drop":   ["drop", "dump", "abandon", "release", "relinquish"],
 
-attack_commands = ["attack", "ambush", "assail", "assault", "charge", "harm",
-                   "hurt", "rush"]
+    "attack": ["attack", "kill", "ambush", "assail", "charge", "harm", "hurt"]
+}
 
 
 def list_of_items(items):
@@ -35,9 +34,8 @@ def list_of_items(items):
     >>> list_of_items([item_keys, item_batteries, item_pistol])
     'keys, batteries, pistol'
     """
-
     item_names = []
-    for item in items:
+    for item in items.values():
         item_names.append(item["name"])
 
     item_name_string = ", ".join(item_names)
@@ -69,13 +67,12 @@ def print_inventory_items(items):
     manner similar to print_room_items(). The only difference is in formatting:
     print "You have ..." instead of "There is ... here.". For example:
     >>> print_inventory_items(inventory)
-    You have id card, laptop, money with a combined weight of 3.7Kg.
+    You have id card, laptop, money.
     <BLANKLINE>
     """
     inventory = items
     if not (len(inventory) == 0):
-        print ("You have " + list_of_items(inventory) +
-               " with a combined weight of " + str(inventory_mass) + "Kg.\n")
+        print ("You have " + list_of_items(inventory) + ".\n")
 
 
 def print_room(room):
@@ -197,10 +194,10 @@ def print_menu(exits, room_items, inv_items):
         # Print the exit name and where it leads to
         print_exit(direction, exit_leads_to(exits, direction))
 
-    for item in room_items:
+    for item in room_items.values():
         print("Take " + item["id"].upper() + " to take " + item["name"])
 
-    for item in inv_items:
+    for item in inv_items.values():
         print("Drop " + item["id"].upper() + " to drop " + item["name"])
 
     print("What do you want to do?")
@@ -244,16 +241,9 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    item = items[item_id]
-    room_inventory = current_room["items"]
-    if item in room_inventory:
-        if (inventory_mass + item["mass"] <= 5.0):
-            inventory.append(item)
-            global inventory_mass
-            inventory_mass += item["mass"]
-            room_inventory.remove(item)
-        else:
-            print("You are carrying too much.")
+    if item_id in current_room["items"]:
+        inventory[item_id] = current_room["items"][item_id]
+        del current_room["items"][item_id]
     else:
         print("You cannot take that.")
 
@@ -264,13 +254,9 @@ def execute_drop(item_id):
     is no such item in the inventory, this function prints "You cannot drop
     that."
     """
-    item = items[item_id]
-    room_inventory = current_room["items"]
-    if item in inventory:
-        room_inventory.append(item)
-        global inventory_mass
-        inventory_mass -= item["mass"]
-        inventory.remove(item)
+    if (item_id in inventory):
+        current_room["items"][item_id] = inventory[item_id]
+        del inventory[item_id]
     else:
         print("You cannot drop that.")
 
@@ -281,15 +267,20 @@ def execute_attack(entity_id, item_id):
     is no such item in the inventory, this function prints "You cannot drop
     that."
     """
-    # Player attacks entity
-    entities[entity_id] -= items[item_id]["damage"]
-    if entities[entity_id]["health"] <= 0:
-        entities[entity_id]["alive"] = False
+    global health
+    global alive
+    if entities[entity_id]["alive"] == False:
+        print("A " + entity_id + " corpse lies on the ground.")
+    else:
+        # Player attacks entity
+        entities[entity_id]["health"] -= items[item_id]["damage"]
+        if entities[entity_id]["health"] <= 0:
+            entities[entity_id]["alive"] = False
 
-    # Entity attacks player
-    health -= items[item_id]["damage"]
-    if entities[entity_id]["health"] <= 0:
-        entities[entity_id]["alive"] = False
+        # Entity attacks player
+        health -= entities[entity_id]["damage"]
+        if health <= 0:
+            alive = False
 
 
 def execute_command(command):
@@ -299,41 +290,45 @@ def execute_command(command):
     execute_take, or execute_drop, supplying the second word as the argument.
     """
     global moves
-
     if 0 == len(command):
         return
 
-    if command[0] in move_commands:
+    if command[0] in verbs["move"]:
         if len(command) > 1:
             execute_go(command[1])
             moves += 1
         else:
             print("Go where?")
 
-    elif command[0] in take_commands:
+    elif command[0] in verbs["take"]:
         if len(command) > 1:
             execute_take(command[1])
             moves += 1
         else:
             print("Take what?")
 
-    elif command[0] in drop_commands:
+    elif command[0] in verbs["drop"]:
         if len(command) > 1:
             execute_drop(command[1])
             moves += 1
         else:
             print("Drop what?")
 
-    elif command[0] in attack_commands:
-        if len(command) > 2:
-            if command[1] in current_room["entities"]:
-                execute_attack(command[1], command[2])
-            elif command[2] in current_room["entities"]:
-                execute_attack(command[2], command[1])
-            moves += 1
+    elif command[0] in verbs["attack"]:
+        if len(command) > 1:
+            if command[1] in current_room["entities"].keys():
+                if len(command) > 2:
+                    if command[2] in inventory.keys():
+                        execute_attack(command[1], command[2])
+                        moves += 1
+                    else:
+                        print("You cannot attack with that.")
+                else:
+                    print("What with?")
+            else:
+                print("You cannot attack that.")
         else:
             print("Attack what?")
-
     else:
         print("This makes no sense.")
 
@@ -382,7 +377,7 @@ def check_victory():
 # This is the entry point of our program
 def main():
     # Main game loop
-    while True:
+    while alive:
         # Check to see if player has won the game.
         if check_victory():
             break
@@ -395,6 +390,7 @@ def main():
 
         # Execute the player's command
         execute_command(command)
+    print("You died!")
 
 
 # Are we being run as a script? If so, run main().
