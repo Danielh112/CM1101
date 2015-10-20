@@ -273,18 +273,21 @@ def execute_command(command):
     if command[0] == "go":
         if len(command) > 1:
             execute_go(command[1])
+            moves += 1
         else:
             print("Go where?")
 
     elif command[0] == "take":
         if len(command) > 1:
             execute_take(command[1])
+            moves += 1
         else:
             print("Take what?")
 
     elif command[0] == "drop":
         if len(command) > 1:
             execute_drop(command[1])
+            moves += 1
         else:
             print("Drop what?")
 
@@ -298,7 +301,6 @@ def menu(exits, room_items, inv_items):
     actions using print_menu() function. It then prompts the player to type an
     action. The players's input is normalised using the normalise_input()
     function before being returned.
-
     """
 
     # Display menu
@@ -340,7 +342,6 @@ def check_victory():
 
 # This is the entry point of our program
 def main():
-    print("Take all the items to Reception.")
     # Main game loop
     while True:
         # Check to see if player has won the game.
