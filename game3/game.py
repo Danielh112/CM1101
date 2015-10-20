@@ -39,10 +39,10 @@ def print_room_items(room):
     >>> print_room_items(rooms["Reception"])
     There is a pack of biscuits, a student handbook here.
     <BLANKLINE>
-    >>> print_room_items(rooms["Office"])
-    There is a pen here.
+    >>> print_room_items(rooms["Laboratory"])
+    
     <BLANKLINE>
-    >>> print_room_items(rooms["Admins"])
+    >>> print_room_items(rooms["Lift Floor 1"])
 
     """
     room_items = room["items"]
