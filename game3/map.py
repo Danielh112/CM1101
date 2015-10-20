@@ -119,7 +119,7 @@ room_lift1 = {
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?. There's a keypad beside the door with 4 buttons numbered 1-4. """,
 
-    "exits": {"floor 2": "Lift Floor 2", "floor 3": "Lift Floor 3","floor 4": "Lift Floor 4", "west": "Storage Basement"},
+    "exits": {"floor 2": "Lift Floor 2", "floor 3": "Lift Floor 3", "floor 4": "Lift Floor 4", "west": "Storage Basement"},
 
     "items": []
 }
@@ -130,7 +130,7 @@ room_lift2 = {
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?. There's a keypad beside the door with 4 buttons numbered 1-4. """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 3": "Lift Floor 3","floor 4": "Lift Floor 4", "west": "Laboratory"},
+    "exits": {"floor 1": "Lift Floor 1", "floor 3": "Lift Floor 3", "floor 4": "Lift Floor 4", "west": "Laboratory"},
 
     "items": []
 }
@@ -141,7 +141,7 @@ room_lift3 = {
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?. There's a keypad beside the door with 4 buttons numbered 1-4. """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2","floor 4": "Lift Floor 4", "west": "Lobby"},
+    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2", "floor 4": "Lift Floor 4", "west": "Lobby"},
 
     "items": []
 }
@@ -152,15 +152,10 @@ room_lift4 = {
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?. There's a keypad beside the door with 4 buttons numbered 1-4. """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2","floor 3": "Lift Floor 3", "west": "Canteen"},
+    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2", "floor 3": "Lift Floor 3", "west": "Canteen"},
 
     "items": []
 }
-
-
-
-
-
 
 rooms = {
     "Laboratory": room_lab,
@@ -170,6 +165,10 @@ rooms = {
     "Infirmary": room_infirmary,
     "Lobby": room_lobby,
     "Canteen": room_canteen,
-    "Roof": room_roof
-
+    "Roof": room_roof,
+    "Lift Floor 1": room_lift1,
+    "Lift Floor 2": room_lift2,
+    "Lift Floor 3": room_lift3,
+    "Lift Floor 4": room_lift4,
+    "Stairs": room_stairs
 }
