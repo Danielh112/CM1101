@@ -72,7 +72,6 @@ item_saucepan = {
     "description" : "this could be used to cook food...or kill zombies, you chose."
 
 items = {
-    "id": item_id,
     "blue flare": item_blue_flare,
     "pistol": item_pistol,
     "dress": item_dress,
@@ -85,3 +84,4 @@ items = {
     "water gun" : item_water_gun 
     "Saucepan" : item_saucepan
 }    
+
