@@ -16,33 +16,33 @@ searchable_labcoat = {
 }
 
 searchable_armorycabinet = {
-	"id": "armorycabinet",
-	"name": "a weapon cabinet",
-	"description": "A tall grey racked cabinet.",
-	"searchable": True,
-	"items": [item_pistol]
+    "id": "armorycabinet",
+    "name": "a weapon cabinet",
+    "description": "A tall grey racked cabinet.",
+    "searchable": True,
+    "items": [item_pistol]
 }
 
 searchable_medicalcabinet = {
-	"id": "medicalcabinet",
-	"name": "a medical cabinet",
-	"description": "A small cupboard with a glass door",
-	"searchable": True,
-	"items": [item_medipac]
+    "id": "medicalcabinet",
+    "name": "a medical cabinet",
+    "description": "A small cupboard with a glass door",
+    "searchable": True,
+    "items": [item_medipac]
 }
 
 searchables = {
-	"lobbydesk": searchable_lobbydesk,
-	"labcoat": searchable_labcoat,
-	"armorycabinet": searchable_armorycabinet,
-	"medicalcabinet": searchable_medicalcabinet
+    "lobbydesk": searchable_lobbydesk,
+    "labcoat": searchable_labcoat,
+    "armorycabinet": searchable_armorycabinet,
+    "medicalcabinet": searchable_medicalcabinet
 }
 
-#A function to actually search these items?
+# A function to actually search these items?
 if input == "search" + ["searchables"]:
-	if searchable == True:
-		print(searchables["items"])
-	else:
-		print("You cannot search that")
+    if searchable == True:
+        print(searchables["items"])
+    else:
+        print("You cannot search that")
 else:
-	pass
+    pass
