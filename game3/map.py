@@ -41,7 +41,7 @@ room_armory = {
     "description":
     """There’s a secret armory behind locker 16. Who knew?.
     This must be for emergencies. All but one the cabinets that line all 4 walls
-     are locked and require a keycode to open.""",
+    are locked and require a keycode to open.""",
 
     "exits": {"east": "Changing Area"},
 
