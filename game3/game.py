@@ -447,12 +447,42 @@ def check_player_alive():
 
 # This is the entry point of our program
 def main():
-    print("\n*****************************************************************************\n*"
-          "  New to this style of games?!, input (help) to get some instructions for  *\n* "
-          " playing this game.                                                       "
-          "*\n*****************************************************************************")
+    print("\n\n=========================================================================================="
+          "\nLab"
+          "\n=========================================================================================="
+          "\n All the work has paid off, you’ve finally cracked it."
+          "\n The secret to immortality. Your successful test subject DELETED lies in front of you."
+          "\n You are due to present it to the world tomorrow."
+          "\n Your team have all gone home but you stayed to make sure everything was optimal."
+          "\n It would be a good idea to wake the subject and perform some final checks. It would be"
+          "\n devastating if something went wrong tomorrow.")
+    activation = str(input(" Activate?!"))
+    if activation == "yes":
+        print("\n You turn on the life support systems, "
+              "\n the subject starts to move its fingers and its eyes flash open.")
+        print("\n Something’s wrong…ERROR ERROR ERROR. Red lights are flashing all "
+              "\n over your displays. Its head jerks up with its eyes staring right at you,"
+              "\n it begins grunting unintelligibly.The subject destroys the restraints with"
+              "\n a huge roar, leaving a mangled mess of metal on the floor. It lumbers "
+              "\n towards you, arm outstretched. The last thing you see is its  hand "
+              "\n driving into your neck.")
+    else:
+        print("\n You probably should do some checks anyway.\n You turn on the life support systems, "
+              "the subject starts to move its fingers and its eyes flash open.")
+        print("\n Something’s wrong…ERROR ERROR ERROR. Red lights are flashing all "
+              "\n over your displays. Its head jerks up with its eyes staring right at you,"
+              "\n it begins grunting unintelligibly.The subject destroys the restraints with"
+              "\n a huge roar, leaving a mangled mess of metal on the floor. It lumbers "
+              "\n towards you, arm outstretched. The last thing you see is its  hand "
+              "\n driving into your neck.")
+    start = str(input("======================== Input enter to start the game ====================================\n"))
+    if start == "enter":
+
+        print("\n*****************************************************************************\n*"
+              "  New to this style of games?!, input (help) to get some instructions for  *\n* "
+              " playing this game.                                                       "
+              "*\n*****************************************************************************")
     print_room(current_room)
-    music()
     # Main game loop
     while playing:
         # Show the menu with possible actions and ask the player
