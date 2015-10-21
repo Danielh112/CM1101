@@ -1,3 +1,4 @@
+
 from items import *
 from entities import *
 
@@ -5,17 +6,17 @@ room_lab = {
     "name": "Laboratory",
 
     "description":
-    """You see flames flicker in the corner of the room.
-    There are holes in the wall, showing exposed wiring.
-    Most of your equipment has been destroyed.
-    The security door to the west of the room has been wrenched open, whereas
-    the doors to the east (Infirmary) and north (Changing Area) remain
-    untouched.
-    """,
+    """You see flames flicker in the corner of the room. There are holes in the
+wall, showing exposed wiring. Most of your equipment has been destroyed. The
+security door to the west of the room has been wrenched open, whereas the doors
+to the east (Infirmary) and north (Changing Area) remain untouched.
+""",
 
-    "exits": {"east": "Infirmary", "north": "Changing Area", "west": "Lift Floor 2"},
+    "exits": {"east": "Infirmary", "north": "Changing Area",
+              "west": "Lift Floor 2"},
 
-    "items": {"billy idol cd": item_billy_idol_cd, "saucepan": item_saucepan},
+    "items": {"billy idol cd": item_billy_idol_cd, "saucepan": item_saucepan,
+              "computer": item_computer},
 
     "entities": {}
 }
@@ -25,8 +26,8 @@ room_changingarea = {
 
     "description":
     """This must be where the scientists change into their lab gear.
-    Lockers line the west wall, numbered from 1-20. The door to the south leads
-    to the lab.""",
+Lockers line the west wall, numbered from 1-20. The door to the south leads
+to the lab.""",
 
     "exits":  {"south": "Laboratory"},
 
@@ -40,8 +41,8 @@ room_armory = {
 
     "description":
     """There’s a secret armory behind locker 16. Who knew?.
-    This must be for emergencies. All but one the cabinets that line all 4 walls
-    are locked and require a keycode to open.""",
+This must be for emergencies. All but one the cabinets that line all 4 walls
+are locked and require a keycode to open.""",
 
     "exits": {"east": "Changing Area"},
 
@@ -55,11 +56,11 @@ room_basement = {
 
     "description":
     """Large glass tubes line the northern end of the room. This looks like a
-    storage area for test subjects. The glass tube in the middle has been
-    smashed. The tube is labelled, “Prototype - M. Morgan, ‘To all intents
-    and purposes, a failed test subject’”. The southern end of the room is
-    lined with cupboards and cabinets. In between the cabinets is the door to
-    the stairwell.""",
+storage area for test subjects. The glass tube in the middle has been
+smashed. The tube is labelled, “Prototype - M. Morgan, ‘To all intents
+and purposes, a failed test subject’”. The southern end of the room is
+lined with cupboards and cabinets. In between the cabinets is the door to
+the stairwell.""",
 
     "exits": {"south": "Lift Floor 1"},
 
@@ -73,8 +74,8 @@ room_infirmary = {
 
     "description":
     """This room is the only clean room in the complex. It feels too clinical.
-    Cabinets filled with various medical supplies line the north and east walls.
-    The west door leads back to the lab""",
+Cabinets filled with various medical supplies line the north and east walls.
+The west door leads back to the lab.""",
 
     "exits": {"west": "Laboratory"},
 
@@ -88,8 +89,8 @@ room_lobby = {
 
     "description":
     """The door to the outside is blocked by large pieces of rubble.
-    The reception lies in ruin. One of the drawers is still intact and is
-    lying open. The door to the east leads to the lift area.
+The reception lies in ruin. One of the drawers is still intact and is
+lying open. The door to the east leads to the lift area.
 """,
 
     "exits": {"east": "Lift Floor 3"},
@@ -104,7 +105,7 @@ room_canteen = {
 
     "description":
     """The door to the canteen is locked, probably because you seem to be the
-    only one here. Your stomach rumbles, almost in response to the locked door.
+only one here. Your stomach rumbles, almost in response to the locked door.
 """,
 
     "exits": {"east": "Lift Floor 4", "north": "Stairs"},
@@ -119,8 +120,8 @@ room_roof = {
 
     "description":
     """The helipad takes up most of the roofspace. Big time executives and
-    government officials must use this for lab visits. You see a helicopter
-    flying over one of the buildings on the other side of the city.
+government officials must use this for lab visits. You see a helicopter
+flying over one of the buildings on the other side of the city.
 """,
 
     "exits": {"east": "Stairs"},
@@ -135,7 +136,7 @@ room_stairs = {
 
     "description":
     """This stairwell is looking a bit worse for wear because no one actually
-     uses the stairs. Scientists don't tend to be the fittest people. """,
+uses the stairs. Scientists don't tend to be the fittest people. """,
 
     "exits": {"west": "Roof"},
 
@@ -149,9 +150,10 @@ room_lift1 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-    There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. """,
 
-    "exits": {"floor 2": "Lift Floor 2", "floor 3": "Lift Floor 3", "floor 4": "Lift Floor 4", "west": "Storage Basement"},
+    "exits": {"floor 2": "Lift Floor 2", "floor 3": "Lift Floor 3",
+              "floor 4": "Lift Floor 4", "west": "Storage Basement"},
 
     "items": {},
 
@@ -163,9 +165,10 @@ room_lift2 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-    There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 3": "Lift Floor 3", "floor 4": "Lift Floor 4", "west": "Laboratory"},
+    "exits": {"floor 1": "Lift Floor 1", "floor 3": "Lift Floor 3",
+              "floor 4": "Lift Floor 4", "west": "Laboratory"},
 
     "items": {},
 
@@ -177,9 +180,10 @@ room_lift3 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-    There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2", "floor 4": "Lift Floor 4", "west": "Lobby"},
+    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2",
+              "floor 4": "Lift Floor 4", "west": "Lobby"},
 
     "items": {},
 
@@ -191,9 +195,10 @@ room_lift4 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-    There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2", "floor 3": "Lift Floor 3", "west": "Canteen"},
+    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2",
+              "floor 3": "Lift Floor 3", "west": "Canteen"},
 
     "items": {},
 

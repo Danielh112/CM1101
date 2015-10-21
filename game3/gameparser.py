@@ -17,13 +17,10 @@ def filter_words(words, skip_words):
     """This function takes a list of words and returns a copy of the list from
     which all words provided in the list skip_words have been removed.
     For example:
-
     >>> filter_words(["help", "me", "please"], ["me", "please"])
     ['help']
-
     >>> filter_words(["go", "south"], skip_words)
     ['go', 'south']
-
     >>> filter_words(['how', 'about', 'i', 'go', 'through', 'that', 'little', 'passage', 'to', 'the', 'south'], skip_words)
     ['go', 'passage', 'south']
     """
@@ -40,7 +37,6 @@ def remove_punct(text):
     marks from a string. Spaces do not count as punctuation and should
     not be removed. The funcion takes a string and returns a new string
     which does not contain any puctuation. For example:
-
     >>> remove_punct("Hello, World!")
     'Hello World'
     >>> remove_punct("-- ...Hey! -- Yes?!...")
@@ -62,7 +58,6 @@ def normalise_input(user_input):
     any extra spaces between words) and further removes all "unimportant"
     words from the list of words using the filter_words() function. The
     resulting list of "important" words is returned. For example:
-
     >>> normalise_input("  Go   south! ")
     ['go', 'south']
     >>> normalise_input("!!!  tAkE,.    LAmp!?! ")
