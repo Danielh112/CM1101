@@ -151,7 +151,7 @@ room_lift1 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up a floor? """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up a floor? You can also go west from this location.""",
 
     "exits": {"up": "Lift Floor 2", "west": "Storage Basement"},
 
@@ -165,7 +165,7 @@ room_lift2 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor?  """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You can also go west from this location.  """,
 
     "exits": {"down": "Lift Floor 1", "up": "Lift Floor 3", "west": "Laboratory"},
 
@@ -179,7 +179,7 @@ room_lift3 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You can also go west from this location. """,
 
     "exits": {"down": "Lift Floor 2", "up": "Lift Floor 4", "west": "Lobby"},
 
@@ -193,7 +193,7 @@ room_lift4 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You guessed it! You can go west too. """,
 
     "exits": {"down": "Lift Floor 3", "west": "Canteen"},
 

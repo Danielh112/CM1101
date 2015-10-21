@@ -442,7 +442,23 @@ def check_victory():
 
 
 def check_player_alive():
-    return alive
+    return alive 
+
+def end_game():
+    global current_room
+
+    while current_room == rooms["roof"]:
+        print("You've made it to the roof! a helicopter is on its way to rescue you, if you have a flare, use it to signal the pilot! However, you only have one shot, so choose wisely!")
+        if input() == str("use red flare"):
+            print("Oh no! The flare doesn't work!! the Zombies are getting closer! I think you're done for...")
+            break
+        elif input() == str("use blue flare"):
+            print("congratulations, the flare works!! The pilot has seen you!")
+            print("You made it to the roof, flare in hand. Hopefully the pilot sees you. A feeling of relief washes over you as you notice the helicopter getting closer. \
+                 The wind begins to pick up as the helicopter lands on the helipad. You hear thumping on the roof access door behind you. You see your reflection in the window as you climb on board. \
+                 Everything comes flooding back. You are Kirill Sidorov, you created the monster and you are responsible for what happened in the lab. The relief you feel is immediately replaced with guilt as you realize the knock on effect something like this could have on the world. As you sit down, nodding to the mysterious pilot, you notice that your sleeve is torn at the shoulder. Upon further inspection, you see that you have been bitten. It must have happened when the subject escaped. You begin to feel woozy and, oddly, extremely angry. Your inhibitions leave you as you fly into a brutal rage, lurching towards the pilot…") 
+            break 
+        else: return 
 
 
 # This is the entry point of our program
@@ -461,11 +477,14 @@ def main():
         # Execute the player's command
         execute_command(command)
 
+        end_game()
+
         if check_victory():
             break
         if not check_player_alive():
             print("You died!")
             break
+
 
 # Are we being run as a script? If so, run main().
 # '__main__' is the name of the scope in which top-level code executes.
