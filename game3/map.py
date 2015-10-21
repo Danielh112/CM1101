@@ -1,4 +1,3 @@
-
 from items import *
 from entities import *
 
@@ -105,7 +104,8 @@ room_canteen = {
 
     "description":
     """The door to the canteen is locked, probably because you seem to be the
-only one here. Your stomach rumbles, almost in response to the locked door.
+only one here. Your stomach rumbles, almost in response to the locked door. There is a stairwell to
+the north and the lift to the east.
 """,
 
     "exits": {"east": "Lift Floor 4", "north": "Stairs"},
@@ -121,7 +121,8 @@ room_roof = {
     "description":
     """The helipad takes up most of the roofspace. Big time executives and
 government officials must use this for lab visits. You see a helicopter
-flying over one of the buildings on the other side of the city.
+flying over one of the buildings on the other side of the city. The stairwell is on the east side of the
+building.
 """,
 
     "exits": {"east": "Stairs"},
@@ -150,10 +151,9 @@ room_lift1 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up a floor? """,
 
-    "exits": {"floor 2": "Lift Floor 2", "floor 3": "Lift Floor 3",
-              "floor 4": "Lift Floor 4", "west": "Storage Basement"},
+    "exits": {"up": "Lift Floor 2", "west": "Storage Basement"},
 
     "items": {},
 
@@ -165,10 +165,9 @@ room_lift2 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor?  """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 3": "Lift Floor 3",
-              "floor 4": "Lift Floor 4", "west": "Laboratory"},
+    "exits": {"down": "Lift Floor 1", "up": "Lift Floor 3", "west": "Laboratory"},
 
     "items": {},
 
@@ -180,10 +179,9 @@ room_lift3 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2",
-              "floor 4": "Lift Floor 4", "west": "Lobby"},
+    "exits": {"down": "Lift Floor 2", "up": "Lift Floor 4", "west": "Lobby"},
 
     "items": {},
 
@@ -195,10 +193,9 @@ room_lift4 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2",
-              "floor 3": "Lift Floor 3", "west": "Canteen"},
+    "exits": {"down": "Lift Floor 3", "west": "Canteen"},
 
     "items": {},
 
