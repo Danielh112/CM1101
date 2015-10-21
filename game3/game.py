@@ -21,12 +21,11 @@ verbs = {
 
     "quit":   ["quit"],
 
-    "use":    ["use"]
-
+    "use":    ["use", "operate", "work"]
 }
 
 nouns = {
-    "inventory": ["inv", "invent", "inventory", "bag"]
+    "inventory": ["inv", "invent", "inventory"]
 }
 
 
