@@ -20,16 +20,6 @@ item_blue_flare = {
 
 def computer_use():
     print("""
-    You are in a maze of twisty little passages, all alike.
-    Next to you is the School of Computer Science and
-    Informatics reception. The receptionist, Matt Strangis,
-    seems to be playing an old school text-based adventure
-    game on his computer. There are corridors leading to the
-    south and east. The exit is to the west.
-<<<<<<< HEAD
-=======
-
->>>>>>> bc2bf43c8fbb3b38b7e240528c178f430839da0e
     Looks like a fun game but I should play this one first.""")
 
 item_computer = {

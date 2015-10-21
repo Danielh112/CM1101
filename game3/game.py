@@ -22,10 +22,6 @@ verbs = {
     "quit":   ["quit"],
 
     "use":    ["use"]
-<<<<<<< HEAD
-=======
-
->>>>>>> bc2bf43c8fbb3b38b7e240528c178f430839da0e
 }
 
 nouns = {
@@ -51,11 +47,8 @@ def list_of_items(items):
     'a set of keys, some batteries, a pistol'
     """
     item_names = []
-    for item in items:
+    for item in items.values():
         item_names.append(item["name"])
-
-    if len(item_names) != 1:
-        item_names[-1] = "and " + item_names[-1]
 
     item_name_string = ", ".join(item_names)
     return item_name_string
@@ -79,22 +72,13 @@ def print_room_items(room):
     """
     #added for room w no items
     room_items = room["items"]
-<<<<<<< HEAD
     if len(room_items) != 0:
         print("There is " + list_of_items(room_items) + " here.\n")
     elif len(room_items) == 0:  #added this
         print("")
 
 
-def print_inventory_items(items):
-    #modified
-=======
-    if (len(room_items) != 0):
-        return "There is " + list_of_items(room_items) + " here.\n"
-    
-
-def print_inventory_items():
->>>>>>> bc2bf43c8fbb3b38b7e240528c178f430839da0e
+def print_inventory_items(inventory):
     """This function takes a list of inventory items and displays it nicely, in a
     manner similar to print_room_items(). The only difference is in formatting:
     print "You have ..." instead of "There is ... here.". For example:
@@ -103,16 +87,9 @@ def print_inventory_items():
     <BLANKLINE>
     """
     if not (len(inventory) == 0):
-<<<<<<< HEAD
         print("You have " + list_of_items(inventory) + ".\n")
     elif len(inventory) == 0:
         print("You have nothing in your inventory" + ".\n") #added this
-
-=======
-        print ("You have " + list_of_items(inventory) + ".\n")
-    else:
-        print("You don't have anything.\n")
->>>>>>> bc2bf43c8fbb3b38b7e240528c178f430839da0e
 
 
 def print_room(room):
@@ -316,7 +293,6 @@ def execute_use(item_id):
 
 
 def execute_attack(entity_id, item_id):
-<<<<<<< HEAD
     #added the description of the function
     """This function takes an item_id and an entity_id as arguments, it checks if
      the entity is alive or not. If the entity isn't alive, it prints "A corpse
@@ -324,8 +300,6 @@ def execute_attack(entity_id, item_id):
      entity's health and at the same time, the entity's damage will be subtracted
      from the player's health.
     """
-=======
->>>>>>> bc2bf43c8fbb3b38b7e240528c178f430839da0e
     global health
     global alive
     if entities[entity_id]["alive"] == False:
@@ -382,7 +356,6 @@ def execute_command(command):
                     print("What with?")
             else:
                 print("You cannot " + command[0] + " that.")
-<<<<<<< HEAD
         else:
             print(command[0] + " what?")
 
@@ -404,30 +377,6 @@ def execute_command(command):
         else:
             print(command[0] + " what?")
 
-=======
-        else:
-            print(command[0] + " what?")
-
-    elif command[0] in verbs["look"]:
-        if len(command) == 1:
-            print_room(current_room)
-        elif command[1] in nouns["inventory"]:
-                print_inventory_items()
-        else:
-            item_id = get_multi_word_phrase(command[1:], items)
-            if (item_id in inventory.keys()) or (item_id in current_room["items"].keys()):
-                print(items[item_id]["description"])
-            else:
-                print("You can not " + command[0] + " that.")
-
-    elif command[0] in verbs["use"]:
-        if len(command) > 1:
-            execute_use(get_multi_word_phrase(command[1:], items))
-        else:
-            print(command[0] + " what?")
-
-
->>>>>>> bc2bf43c8fbb3b38b7e240528c178f430839da0e
     elif command[0] in verbs["quit"]:
         if len(command) == 1:
             print("goodbye!")
@@ -451,6 +400,8 @@ def menu(exits, room_items, inv_items):
     action. The players's input is normalised using the normalise_input()
     function before being returned.
     """
+    # Display menu
+    print_menu(exits, room_items, inv_items)
 
     # Read player's input
     user_input = input("> ")
@@ -480,12 +431,7 @@ def move(exits, direction):
 
 def music():
     import winsound
-<<<<<<< HEAD
-    winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.LOOP)
-=======
     winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
->>>>>>> bc2bf43c8fbb3b38b7e240528c178f430839da0e
-
 
 def check_victory():
     return False
