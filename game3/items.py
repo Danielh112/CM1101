@@ -26,6 +26,10 @@ def computer_use():
     seems to be playing an old school text-based adventure
     game on his computer. There are corridors leading to the
     south and east. The exit is to the west.
+<<<<<<< HEAD
+=======
+
+>>>>>>> bc2bf43c8fbb3b38b7e240528c178f430839da0e
     Looks like a fun game but I should play this one first.""")
 
 item_computer = {
