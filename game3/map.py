@@ -26,9 +26,9 @@ room_changingarea = {
     "description":
     """This must be where the scientists change into their lab gear.
 Lockers line the west wall, numbered from 1-20. The door to the south leads
-to the lab.""",
+to the lab. You notice that locker 16 has come away from the wall leaving a doorway in the west wall""",
 
-    "exits":  {"south": "Laboratory"},
+    "exits":  {"south": "Laboratory", "west": "Armory"},
 
     "items": {"dress": item_dress, "shoes": item_shoes},
 
@@ -206,7 +206,7 @@ rooms = {
     "Laboratory": room_lab,
     "Changing Area": room_changingarea,
     "Armory": room_armory,
-    "Basement": room_basement,
+    "Storage Basement": room_basement,
     "Infirmary": room_infirmary,
     "Lobby": room_lobby,
     "Canteen": room_canteen,
