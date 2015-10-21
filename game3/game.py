@@ -31,20 +31,21 @@ nouns = {
 
 
 def list_of_items(items):
+    #modified
     """This function takes a list of items (see items.py for the definition) and
     returns a comma-separated list of item names (as a string). For example:
 
     >>> list_of_items([item_red_flare, item_dress])
-    'red flare, dress'
+    'a red flare, a little cocktail dress'
 
     >>> list_of_items([item_shoes])
-    'item_shoes'
+    'a pair of old shoes'
 
     >>> list_of_items([])
     ''
 
     >>> list_of_items([item_keys, item_batteries, item_pistol])
-    'keys, batteries, pistol'
+    'a set of keys, some batteries, a pistol'
     """
     item_names = []
     for item in items.values():
@@ -58,15 +59,17 @@ def list_of_items(items):
 
 
 def print_room_items(room):
+    #modifed
     """This function takes a room as an input and nicely displays a list of items
     found in this room (followed by a blank line). If there are no items in
     the room, nothing is printed. See map.py for the definition of a room, and
     items.py for the definition of an item. This function uses list_of_items()
     to produce a comma-separated list of item names. For example:
-    >>> print_room_items(rooms["Reception"])
-    There is a pack of biscuits, a student handbook here.
+    >>> print_room_items(rooms["Changing Area"])
+    There is a little cocktail dress, a pair of old shoes here.
     <BLANKLINE>
     >>> print_room_items(rooms["Laboratory"])
+    There is a Billy Idol CD, a Saucepan here.
     <BLANKLINE>
     >>> print_room_items(rooms["Lift Floor 1"])
     <BLANKLINE>
@@ -74,6 +77,8 @@ def print_room_items(room):
     room_items = room["items"]
     if (len(room_items) != 0):
         return "There is " + list_of_items(room_items) + " here.\n"
+    elif len(room_items) == 0:  #added this
+        print("")
     
 
 def print_inventory_items():
@@ -81,7 +86,7 @@ def print_inventory_items():
     manner similar to print_room_items(). The only difference is in formatting:
     print "You have ..." instead of "There is ... here.". For example:
     >>> print_inventory_items(inventory)
-    You have id card, laptop, money.
+    You have nothing in your inventory.
     <BLANKLINE>
     """
     if not (len(inventory) == 0):
@@ -91,6 +96,7 @@ def print_inventory_items():
 
 
 def print_room(room):
+    #modified , but still having error in doctest
     """This function takes a room as an input and nicely displays its name
     and description. The room argument is a dictionary with entries "name",
     "description" etc. (see map.py for the definition). The name of the room
@@ -99,39 +105,38 @@ def print_room(room):
     in the room, the list of items is printed next followed by a blank line
     (use print_room_items() for this). For example:
 
-    >>> print_room(rooms["Office"])
+    >>> print_room(rooms["Laboratory"])
     <BLANKLINE>
-    THE GENERAL OFFICE
+    LABORATORY
     <BLANKLINE>
-    You are standing next to the cashier's till at
-    30-36 Newport Road. The cashier looks at you with hope
-    in their eyes. If you go west you can return to the
-    Queen's Buildings.
+    You see flames flicker in the corner of the room.
+    There are holes in the wall, showing exposed wiring.
+    Most of your equipment has been destroyed.
+    The security door to the west of the room has been wrenched open, whereas
+    the doors to the east (Infirmary) and north (Changing Area) remain
+    untouched.
     <BLANKLINE>
-    There is a pen here.
-    <BLANKLINE>
-
-    >>> print_room(rooms["Reception"])
-    <BLANKLINE>
-    RECEPTION
-    <BLANKLINE>
-    You are in a maze of twisty little passages, all alike.
-    Next to you is the School of Computer Science and
-    Informatics reception. The receptionist, Matt Strangis,
-    seems to be playing an old school text-based adventure
-    game on his computer. There are corridors leading to the
-    south and east. The exit is to the west.
-    <BLANKLINE>
-    There is a pack of biscuits, a student handbook here.
+    There is a Billy Idol CD, a Saucepan here.
     <BLANKLINE>
 
-    >>> print_room(rooms["Admins"])
+    >>> print_room(rooms["Changing Area"])
     <BLANKLINE>
-    MJ AND SIMON'S ROOM
+    CHANGING AREA
     <BLANKLINE>
-    You are leaning agains the door of the systems managers'
-    room. Inside you notice Matt "MJ" John and Simon Jones. They
-    ignore you. To the north is the reception.
+    This must be where the scientists change into their lab gear.
+    Lockers line the west wall, numbered from 1-20. The door to the south leads
+    to the lab.
+    <BLANKLINE>
+    There is a little cocktail dress, a pair of old shoes here.
+    <BLANKLINE>
+
+    >>> print_room(rooms["Roof"])
+    <BLANKLINE>
+    ROOF
+    <BLANKLINE>
+    The helipad takes up most of the roofspace. Big time executives and
+    government officials must use this for lab visits. You see a helicopter
+    flying over one of the buildings on the other side of the city
     <BLANKLINE>
 
     Note: <BLANKLINE> here means that doctest should expect a blank line.
@@ -145,12 +150,12 @@ def exit_leads_to(exits, direction):
     exit taken from this dictionary). It returns the name of the room into
     which this exit leads. For example:
 
-    >>> exit_leads_to(rooms["Reception"]["exits"], "south")
-    "MJ and Simon's room"
-    >>> exit_leads_to(rooms["Reception"]["exits"], "east")
-    "your personal tutor's office"
-    >>> exit_leads_to(rooms["Tutor"]["exits"], "west")
-    'Reception'
+    >>> exit_leads_to(rooms["Laboratory"]["exits"], "east")
+    'Infirmary'
+    >>> exit_leads_to(rooms["Laboratory"]["exits"], "west")
+    'Lift Floor 2'
+    >>> exit_leads_to(rooms["Changing Area"]["exits"], "south")
+    'Laboratory'
     """
     return rooms[exits[direction]]["name"]
 
@@ -163,10 +168,10 @@ def print_exit(direction, leads_to):
     GO <EXIT NAME UPPERCASE> to <where it leads>.
 
     For example:
-    >>> print_exit("east", "you personal tutor's office")
-    GO EAST to you personal tutor's office.
-    >>> print_exit("south", "MJ and Simon's room")
-    GO SOUTH to MJ and Simon's room.
+    >>> print_exit("north", "Laboratory")
+    GO NORTH to Laboratory.
+    >>> print_exit("east", "Infirmary")
+    GO EAST to Infirmary.
     """
     print("GO " + direction.upper() + " to " + leads_to + ".")
 
@@ -191,14 +196,12 @@ def print_menu(exits, room_items, inv_items):
     this:
 
     You can:
-    GO EAST to your personal tutor's office.
-    GO WEST to the parking lot.
-    GO SOUTH to MJ and Simon's room.
-    TAKE BISCUITS to take a pack of biscuits.
-    TAKE HANDBOOK to take a student handbook.
-    DROP ID to drop your id card.
-    DROP LAPTOP to drop your laptop.
-    DROP MONEY to drop your money.
+    GO EAST to Infirmary.
+    GO NORTH to Changing Area.
+    GO WEST to Lift Floor 2.
+    TAKE CD to take a Billy Idol CD.
+    TAKE SAUCEPAN to take a Saucepan.
+    DROP WATER GUN to drop a water gun.
     What do you want to do?
 
     """
@@ -224,13 +227,13 @@ def is_valid_exit(exits, chosen_exit):
     that the name of the exit has been normalised by the function
     normalise_input(). For example:
 
-    >>> is_valid_exit(rooms["Reception"]["exits"], "south")
+    >>> is_valid_exit(rooms["Laboratory"]["exits"], "east")
     True
-    >>> is_valid_exit(rooms["Reception"]["exits"], "up")
+    >>> is_valid_exit(rooms["Laboratory"]["exits"], "up")
     False
-    >>> is_valid_exit(rooms["Parking"]["exits"], "west")
+    >>> is_valid_exit(rooms["Infirmary"]["exits"], "east")
     False
-    >>> is_valid_exit(rooms["Parking"]["exits"], "east")
+    >>> is_valid_exit(rooms["Infirmary"]["exits"], "west")
     True
     """
     return chosen_exit in exits
@@ -289,6 +292,13 @@ def execute_use(item_id):
 
 
 def execute_attack(entity_id, item_id):
+    #added the description of the function
+    """This function takes an item_id and an entity_id as arguments, it checks if
+     the entity is alive or not. If the entity isn't alive, it prints "A corpse
+     lies on the ground", otherwise the item's damage will be subtracted from the
+     entity's health and at the same time, the entity's damage will be subtracted
+     from the player's health.
+    """
     global health
     global alive
     if entities[entity_id]["alive"] == False:
@@ -401,18 +411,18 @@ def menu(exits, room_items, inv_items):
 
 
 def move(exits, direction):
+    #modified
     """This function returns the room into which the player will move if, from a
-    dictionary "exits" of avaiable exits, they choose to move towards the exit
+    dictionary "exits" of available exits, they choose to move towards the exit
     with the name given by "direction". For example:
 
-    >>> move(rooms["Reception"]["exits"], "south") == rooms["Admins"]
+    >>> move(rooms["Laboratory"]["exits"], "east") == rooms["Infirmary"]
     True
-    >>> move(rooms["Reception"]["exits"], "east") == rooms["Tutor"]
+    >>> move(rooms["Laboratory"]["exits"], "north") == rooms["Changing Area"]
     True
-    >>> move(rooms["Reception"]["exits"], "west") == rooms["Office"]
+    >>> move(rooms["Laboratory"]["exits"], "west") == rooms["Lift Floor 1"]
     False
     """
-    # Go to next room
     return rooms[exits[direction]]
 
 
