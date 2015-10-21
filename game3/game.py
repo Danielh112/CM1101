@@ -74,7 +74,7 @@ def print_room_items(room):
     room_items = room["items"]
     if (len(room_items) != 0):
         return "There is " + list_of_items(room_items) + " here.\n"
-
+    
 
 def print_inventory_items():
     """This function takes a list of inventory items and displays it nicely, in a
@@ -137,7 +137,7 @@ def print_room(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
     print("\n" + room["name"].upper() + "\n")
-    print(room["description"] + print_room_items(room))
+    print(room["description"] + str(print_room_items(room)))
 
 
 def exit_leads_to(exits, direction):
@@ -416,6 +416,11 @@ def move(exits, direction):
     return rooms[exits[direction]]
 
 
+def music():
+    import winsound
+    winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.LOOP)
+
+
 def check_victory():
     return False
 
@@ -427,6 +432,7 @@ def check_player_alive():
 # This is the entry point of our program
 def main():
     print_room(current_room)
+    music()
     # Main game loop
     while playing:
         # Show the menu with possible actions and ask the player
