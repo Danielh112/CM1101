@@ -14,7 +14,19 @@ verbs = {
 
     "drop":   ["drop", "dump", "abandon", "release", "relinquish"],
 
-    "attack": ["attack", "kill", "ambush", "assail", "charge", "harm", "hurt"]
+    "attack": ["attack", "kill", "ambush", "assail", "charge", "harm", "hurt"],
+
+    "look":   ["look", "stare", "view", "notice", "glance", "admire", "study",
+               "gaze", "inspect", "scout", "scan", "survey"],
+
+    "quit":   ["quit"],
+
+    "use":    ["use"]
+
+}
+
+nouns = {
+    "inventory": ["inv", "invent", "inventory", "bag"]
 }
 
 
@@ -38,6 +50,9 @@ def list_of_items(items):
     for item in items.values():
         item_names.append(item["name"])
 
+    if len(item_names) != 1:
+        item_names[-1] = "and " + item_names[-1]
+
     item_name_string = ", ".join(item_names)
     return item_name_string
 
@@ -58,10 +73,10 @@ def print_room_items(room):
     """
     room_items = room["items"]
     if (len(room_items) != 0):
-        print ("There is " + list_of_items(room_items) + " here.\n")
+        return "There is " + list_of_items(room_items) + " here.\n"
 
 
-def print_inventory_items(items):
+def print_inventory_items():
     """This function takes a list of inventory items and displays it nicely, in a
     manner similar to print_room_items(). The only difference is in formatting:
     print "You have ..." instead of "There is ... here.". For example:
@@ -69,9 +84,10 @@ def print_inventory_items(items):
     You have id card, laptop, money.
     <BLANKLINE>
     """
-    inventory = items
     if not (len(inventory) == 0):
         print ("You have " + list_of_items(inventory) + ".\n")
+    else:
+        print("You don't have anything.\n")
 
 
 def print_room(room):
@@ -121,8 +137,7 @@ def print_room(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
     print("\n" + room["name"].upper() + "\n")
-    print(room["description"] + "\n")
-    print_room_items(room)
+    print(room["description"] + print_room_items(room))
 
 
 def exit_leads_to(exits, direction):
@@ -230,6 +245,7 @@ def execute_go(direction):
     global current_room
     if is_valid_exit(current_room["exits"], direction):
         current_room = move(current_room["exits"], direction)
+        print_room(current_room)
     else:
         print("You cannot go there")
 
@@ -240,9 +256,10 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    if item_id in current_room["items"]:
+    if (item_id in current_room["items"]) and (items[item_id]["attainable"]):
         inventory[item_id] = current_room["items"][item_id]
         del current_room["items"][item_id]
+        print(inventory[item_id]["description"])
     else:
         print("You cannot take that.")
 
@@ -256,16 +273,22 @@ def execute_drop(item_id):
     if (item_id in inventory):
         current_room["items"][item_id] = inventory[item_id]
         del inventory[item_id]
+        print("You dropped " + items[item_id]["name"] + ".")
     else:
         print("You cannot drop that.")
 
 
+def execute_use(item_id):
+    if (item_id in inventory.keys()) or (item_id in current_room["items"].keys()):
+        if items[item_id]["use"] != False:
+            items[item_id]["use"]()
+        else:
+            print("You cannot use that.")
+    else:
+        print("You can't see that in the room.")
+
+
 def execute_attack(entity_id, item_id):
-    """This function takes an item_id as an argument and moves this item from the
-    player's inventory to list of items in the current room. However, if there
-    is no such item in the inventory, this function prints "You cannot drop
-    that."
-    """
     global health
     global alive
     if entities[entity_id]["alive"] == False:
@@ -288,48 +311,76 @@ def execute_command(command):
     the command: "go", "take", or "drop"), executes either execute_go,
     execute_take, or execute_drop, supplying the second word as the argument.
     """
-    global moves
     if 0 == len(command):
         return
 
     if command[0] in verbs["move"]:
         if len(command) > 1:
             execute_go(command[1])
-            moves += 1
         else:
-            print("Go where?")
+            print(command[0] + " where?")
 
     elif command[0] in verbs["take"]:
         if len(command) > 1:
-            execute_take(command[1])
-            moves += 1
+            execute_take(get_multi_word_phrase(command[1:], items))
         else:
-            print("Take what?")
+            print(command[0] + " what?")
 
     elif command[0] in verbs["drop"]:
         if len(command) > 1:
-            execute_drop(command[1])
-            moves += 1
+            execute_drop(get_multi_word_phrase(command[1:], items))
         else:
-            print("Drop what?")
+            print(command[0] + " what?")
 
     elif command[0] in verbs["attack"]:
         if len(command) > 1:
             if command[1] in current_room["entities"].keys():
                 if len(command) > 2:
-                    if command[2] in inventory.keys():
-                        execute_attack(command[1], command[2])
-                        moves += 1
+                    weapon = get_multi_word_phrase(command[2:], items)
+                    if weapon in inventory.keys():
+                        execute_attack(command[1], weapon, items)
                     else:
-                        print("You cannot attack with that.")
+                        print("You do not have " + weapon + " .")
                 else:
                     print("What with?")
             else:
-                print("You cannot attack that.")
+                print("You cannot " + command[0] + " that.")
         else:
-            print("Attack what?")
+            print(command[0] + " what?")
+
+    elif command[0] in verbs["look"]:
+        if len(command) == 1:
+            print_room(current_room)
+        elif command[1] in nouns["inventory"]:
+                print_inventory_items()
+        else:
+            item_id = get_multi_word_phrase(command[1:], items)
+            if (item_id in inventory.keys()) or (item_id in current_room["items"].keys()):
+                print(items[item_id]["description"])
+            else:
+                print("You can not " + command[0] + " that.")
+
+    elif command[0] in verbs["use"]:
+        if len(command) > 1:
+            execute_use(get_multi_word_phrase(command[1:], items))
+        else:
+            print(command[0] + " what?")
+
+
+    elif command[0] in verbs["quit"]:
+        if len(command) == 1:
+            print("goodbye!")
+            global playing
+            playing = False
+
     else:
         print("This makes no sense.")
+
+
+def get_multi_word_phrase(phrase, list_of_valid_phrases):
+    for x in range(len(phrase), 0, -1):
+        if " ".join(phrase[:x]) in list_of_valid_phrases:
+            return " ".join(phrase[:x])
 
 
 def menu(exits, room_items, inv_items):
@@ -339,9 +390,6 @@ def menu(exits, room_items, inv_items):
     action. The players's input is normalised using the normalise_input()
     function before being returned.
     """
-
-    # Display menu
-    print_menu(exits, room_items, inv_items)
 
     # Read player's input
     user_input = input("> ")
@@ -364,8 +412,7 @@ def move(exits, direction):
     >>> move(rooms["Reception"]["exits"], "west") == rooms["Office"]
     False
     """
-
-    # Next room to go to
+    # Go to next room
     return rooms[exits[direction]]
 
 
@@ -373,24 +420,26 @@ def check_victory():
     return False
 
 
+def check_player_alive():
+    return alive
+
+
 # This is the entry point of our program
 def main():
+    print_room(current_room)
     # Main game loop
-    while alive:
-        # Check to see if player has won the game.
-        if check_victory():
-            break
-        # Display game status (room description, inventory etc.)
-        print_room(current_room)
-        print_inventory_items(inventory)
-
+    while playing:
         # Show the menu with possible actions and ask the player
         command = menu(current_room["exits"], current_room["items"], inventory)
 
         # Execute the player's command
         execute_command(command)
-    print("You died!")
 
+        if check_victory():
+            break
+        if not check_player_alive():
+            print("You died!")
+            break
 
 # Are we being run as a script? If so, run main().
 # '__main__' is the name of the scope in which top-level code executes.

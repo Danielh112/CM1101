@@ -14,7 +14,8 @@ to the east (Infirmary) and north (Changing Area) remain untouched.
     "exits": {"east": "Infirmary", "north": "Changing Area",
               "west": "Lift Floor 2"},
 
-    "items": {"billy idol cd": item_billy_idol_cd, "saucepan": item_saucepan},
+    "items": {"billy idol cd": item_billy_idol_cd, "saucepan": item_saucepan,
+              "computer": item_computer},
 
     "entities": {}
 }
@@ -73,7 +74,7 @@ room_infirmary = {
     "description":
     """This room is the only clean room in the complex. It feels too clinical.
 Cabinets filled with various medical supplies line the north and east walls.
-The west door leads back to the lab""",
+The west door leads back to the lab.""",
 
     "exits": {"west": "Laboratory"},
 
