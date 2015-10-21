@@ -17,7 +17,7 @@ to the east (Infirmary) and north (Changing Area) remain untouched.
     "items": {"billy idol cd": item_billy_idol_cd, "saucepan": item_saucepan,
               "computer": item_computer},
 
-    "entities": {}
+    "entities": {"zombie": entity_zombie }
 }
 
 room_changingarea = {
@@ -65,7 +65,7 @@ the stairwell.""",
 
     "items": {"blue flare": item_blue_flare},
 
-    "entities": {}
+    "entities": {"old man": entity_old_man}
 }
 
 room_infirmary = {
@@ -96,7 +96,7 @@ lying open. The door to the east leads to the lift area.
 
     "items": {"red flare": item_red_flare},
 
-    "entities": {}
+    "entities": {"little kid": entity_little_kid}
 }
 
 room_canteen = {
@@ -129,7 +129,7 @@ building.
 
     "items": {},
 
-    "entities": {}
+    "entities": {"Dr. Matt the zombie": entity_zombie_matt}
 }
 
 room_stairs = {
@@ -143,7 +143,7 @@ uses the stairs. Scientists don't tend to be the fittest people. """,
 
     "items": {"batteries": item_batteries},
 
-    "entities": {}
+    "entities": {"zombie cleaner": entity_zombie_cleaner}
 }
 
 room_lift1 = {
@@ -185,7 +185,7 @@ There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go 
 
     "items": {},
 
-    "entities": {}
+    "entities": {"zombie electrician": entity_zombie_electrician}
 }
 
 room_lift4 = {

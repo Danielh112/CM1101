@@ -21,7 +21,9 @@ verbs = {
 
     "quit":   ["quit"],
 
-    "use":    ["use"]
+    "use":    ["use"],
+
+    "help":   ["help"]
 
 }
 
@@ -376,12 +378,16 @@ def execute_command(command):
         else:
             print(command[0] + " what?")
 
-
     elif command[0] in verbs["quit"]:
         if len(command) == 1:
             print("goodbye!")
             global playing
             playing = False
+
+    elif command[0] in verbs["help"]:
+    #added help command
+        print("To view all the items in your inventory, input: (view inventory)"
+              "To add some items to your inventory, input: (take (name of the item))")
 
     else:
         print("This makes no sense.")
@@ -441,6 +447,10 @@ def check_player_alive():
 
 # This is the entry point of our program
 def main():
+    print("\n*****************************************************************************\n*"
+          "  New to this style of games?!, input (help) to get some instructions for  *\n* "
+          " playing this game.                                                       "
+          "*\n*****************************************************************************")
     print_room(current_room)
     music()
     # Main game loop
