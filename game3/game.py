@@ -383,7 +383,7 @@ def execute_command(command):
             global playing
             playing = False
 
-    else:lo
+    else:
         print("This makes no sense.")
 
 
