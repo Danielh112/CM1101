@@ -20,7 +20,7 @@ entity_old_man = {
     "name": "an old man",
     "health": 75,
     "damage": 25,
-    "description": "There is an old man sat on the floor.",
+    "description": "There is an old man stood in the corner.",
     "long description": "How is this old man still alive?"
 
 }
@@ -33,21 +33,19 @@ entity_zombie_matt = {
     "alive": True,
     "health": 75,
     "damage": 25,
-    "description": "A zombie co worker wonders the room.",
-    "long description": """This zombie seems familiar...
-hold on a second that's your co-worker Dr. Matt Morgan, he looks a little under the weather, best
-not to mention it."""
+    "description": "A man in a ripped shirt wanders the room.",
+    "long description": """This man seems familiar..."""
 }
 
 entity_little_kid = {
-    "id": "little boy",
+    "id": "little kid",
     "name": "a little kid",
     "hostile": True,
     "agression": 3,
     "alive": True,
     "health": 75,
     "damage": 25,
-    "description": "A little boy with a creepy mask stares at you.",
+    "description": "A little kid with a creepy mask stares at you.",
     "long description": "I don't remember being that weird when I was younger..."
 }
 
@@ -60,7 +58,7 @@ entity_zombie_electrician = {
     "health": 75,
     "damage": 25,
     "description": "A zombie electrician is sat hunched over against the wall.",
-    "long description": "He looks like an electrician. He must've been here when it all happend..."
+    "long description": "He looks like an electrician. He must've been here when it all happened..."
 }
 
 entity_zombie_cleaner = {
@@ -79,7 +77,7 @@ entities = {
     "zombie": entity_zombie,
     "old man": entity_old_man,
     "zombie co worker": entity_zombie_matt,
-    "little boy": entity_little_kid,
+    "little kid": entity_little_kid,
     "zombie electrician": entity_zombie_electrician,
     "zombie cleaner": entity_zombie_cleaner
 }
