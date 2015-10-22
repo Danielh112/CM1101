@@ -30,6 +30,13 @@ game on his computer. There are corridors leading to the
 south and east. The exit is to the west."""))
     print("\nLooks like a fun game but I should play this one first.")
 
+
+def medipac_use():
+    global health
+    health = 100
+    print("you are fully healed")
+
+
 item_computer = {
     "id": "computer",
     "name": "a computer",
@@ -110,7 +117,7 @@ item_medipac = {
     "description": "This medipac could come in handy in the event of a zombie attack! You should keep it safe.",
     "damage": 0,
     "attainable": True,
-    "use": False
+    "use": medipac_use
 }
 
 item_billy_idol_cd = {

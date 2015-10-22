@@ -484,37 +484,36 @@ def main():
           " New to this style of games?!, input ('help') to get some           *\n*"
           " instructions for playing this game.                                *"
           "\n**********************************************************************")
-    print("""
-=====================================================================================
-Lab
-=====================================================================================
-All the work has paid off, you’ve finally cracked it.
+    print("\nLab\n")
+    wrap_print("""
+All the work has paid off, you've finally cracked it.
 The secret to immortality. Your successful test subject DELETED lies in front of you.
 You are due to present it to the world tomorrow.
 Your team have all gone home but you stayed to make sure everything was optimal.
-It would be a good idea to wake the subject and perform some final checks. It would be
-devastating if something went wrong tomorrow.""")
+It would be a good idea to wake the subject and pefrom some final checks. It would
+be devestating if something went wrong tomorrow.""")
 
     activation = str(input(" Activate?!"))
     if activation == "yes":
-        wrap_print(""" You turn on the life support systems,
-the subject starts to move its fingers and its eyes flash open.
-Something’s wrong…ERROR ERROR ERROR. Red lights are flashing all
-over your displays. Its head jerks up with its eyes staring right at you,
-it begins grunting unintelligibly.The subject destroys the restraints with
-a huge roar, leaving a mangled mess of metal on the floor. It lumbers
-towards you, arm outstretched. The last thing you see is its hand
-clasped around your neck before you fade from conciousness.""")
+        wrap_print("""You turn on the life supprot systems,
+        the subject starts to move its fingers and its eyes flash open.
+        something's wrong...ERROR ERROR ERROR. Red lights are flashing all
+        over your displays. Its head jerks up with its eyes staring right at you, 
+        it begins grunting unintelligibly/ The subject destroys the restraints with
+        a huge roar, leaving a mangled mess of metal on the floor. It lumbers towards
+        you, arm outstretched.""") 
+    
     else:
-        wrap_print("""\nYou probably should do some checks anyway.
-You turn on the life support systems,
-the subject starts to move its fingers and its eyes flash open.
-Something’s wrong…ERROR ERROR ERROR. Red lights are flashing all
-over your displays. Its head jerks up with its eyes staring right at you,
-it begins grunting unintelligibly.The subject destroys the restraints with
-a huge roar, leaving a mangled mess of metal on the floor. It lumbers
-towards you, arm outstretched. The last thing you see is its hand
-clasped around your neck before you fade from conciousness.""")
+        wrap_print("""
+            \n You probably should do some checks anyway.
+            You turn on the life supprot systems,
+        the subject starts to move its fingers and its eyes flash open.
+        something's wrong...ERROR ERROR ERROR. Red lights are flashing all
+        over your displays. Its head jerks up with its eyes staring right at you, 
+        it begins grunting unintelligibly/ The subject destroys the restraints with
+        a huge roar, leaving a mangled mess of metal on the floor. It lumbers towards
+        you, arm outstretched.""")
+
 
     print_room(current_room)
     # Main game loop
