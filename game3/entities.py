@@ -1,5 +1,5 @@
 entity_zombie = {
-    "id": "generic zombie",
+    "id": "zombie",
     "name": "zombie",
     "alive": True,
     "hostile": True,
@@ -7,8 +7,12 @@ entity_zombie = {
     "health": 75,
     "damage": 25,
     "summary": "A zombie stands in the corner of the room.",
-    "description": """The zombie has blood all down his torn clothes
-     he looks sort of familiar."""
+    "description": """You know you've seen this face before, a foggy memory of
+swishing lab coats andtwitching limbs on an operating table flashes across your
+conciousness. Its jaw is hanging off its face by a few tendons. Blood and flesh
+drip from its jowls as it grunts unintelligibly. One arm seems to be bent in a
+way that isn't humanly possible, the other holds a scalpel between its degloved
+fingers. This must've been what decimated the lab."""
 }
 
 entity_old_man = {
@@ -26,7 +30,7 @@ entity_old_man = {
 }
 
 entity_zombie_matt = {
-    "id": "zombie co worker",
+    "id": "familiar zombie",
     "name": "zombie",
     "hostile": True,
     "agression": 3,
@@ -34,23 +38,34 @@ entity_zombie_matt = {
     "health": 75,
     "damage": 25,
     "summary": "A man in a ripped shirt wanders the room.",
-    "description": """This man seems familiar..."""
+    "description": """The first thing you notice is the ripped Pacman T-shirt,
+fortunately what fabric is left covers what you assume is a hole straight
+through the torso. It grunts at you,"intents...purposes...braiiiins".
+You've heard that voice before, albeit not as guttural. You remember talking
+with a friend about snakes, the sea and coffee. As odd as that seems,
+you should probably focus on the violent situation at hand right now. """
 }
 
 entity_little_kid = {
-    "id": "little boy",
-    "name": "little boy",
+    "id": "little kid",
+    "name": "little kid",
     "hostile": True,
     "agression": 3,
     "alive": True,
     "health": 75,
     "damage": 25,
     "summary": "A little kid with a creepy mask stares at you.",
-    "description": "I don't remember being that weird when I was younger..."
+    "description": """"A little kid carrying a backpack and wearing what looks
+like a a Halloween mask on her face is running about the room, knocking
+everything over. She stops as soon as she realizes that you are there. She
+lifts the mask, revealing a set of cold, dead eyes and a face that has been
+ripped and torn. Her blonde ponytail falls to her shoulder, blood dripping
+from the pink bow that fastens it. It would have been better for your sanity if
+she kept the mask on. """
 }
 
 entity_zombie_electrician = {
-    "id": "zombie electrician",
+    "id": "electrician",
     "name": "zombie",
     "hostile": True,
     "agression": 3,
@@ -58,11 +73,15 @@ entity_zombie_electrician = {
     "health": 75,
     "damage": 25,
     "summary": "A zombie electrician is sat hunched over against the wall.",
-    "description": "He looks like an electrician. He must've been here when it all happened..."
+    "description": """You see an electrician working with some wires in a hole
+in the wall. A spark flies from the wires, illuminating the man's face. You see
+that his lips have been forcibly removed, showing a full set of crooked,
+bloodstained teeth. He raises his only remaining arm, grabbing one of the fizzling
+wires and points it towards you, letting out an animalistic growl as he does so. """
 }
 
 entity_zombie_cleaner = {
-    "id": "zombie cleaner",
+    "id": "cleaner",
     "name": "zombie",
     "alive": True,
     "hostile": True,
@@ -70,14 +89,18 @@ entity_zombie_cleaner = {
     "health": 75,
     "damage": 25,
     "summary": "A zombie stumbles around the room attempting to clean.",
-    "description": "This cleaner looks tired. She must've been cleaning all day, or maybe it's because she's a zombie."
+    "description": """A woman shuffles towards you, dragging a red feather duster behind her. A line
+of blood trails behind her, likely coming from the feather duster. You also notice that one of her eyes is
+completely glazed over, the other so bloodshot that there seems to be no white left. She raises the feather
+duster upon seeing you. What looks like human intestine falls out of the duster, splatting on the floor
+with a horrible squelch."""
 }
 
 entities = {
     "generic zombie": entity_zombie,
     "old man": entity_old_man,
-    "zombie co worker": entity_zombie_matt,
+    "familiar zombie": entity_zombie_matt,
     "little kid": entity_little_kid,
-    "zombie electrician": entity_zombie_electrician,
-    "zombie cleaner": entity_zombie_cleaner
+    "electrician": entity_zombie_electrician,
+    "cleaner": entity_zombie_cleaner
 }

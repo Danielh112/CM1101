@@ -14,7 +14,7 @@ to the east (Infirmary) and north (Changing Area) remain untouched.""",
               "west": "Lift Floor 2"},
 
     "items": {"billy idol cd": item_billy_idol_cd, "clip board": item_clip_board,
-              "computer": item_computer},
+              "computer": item_computer, "notebook": item_labnote1},
 
     "entities": {"generic zombie": entity_zombie}
 }
@@ -25,11 +25,11 @@ room_changingarea = {
     "description":
     """This must be where the scientists change into their lab gear.
 Lockers line the west wall, numbered from 1-20. The door to the south leads
-to the lab. You notice that locker 16 has come away from the wall leaving a doorway in the west wall""",
+to the lab. You notice that locker 16 has come away from the wall leaving a doorway in the west wall.""",
 
     "exits": {"south": "Laboratory", "west": "Armory"},
 
-    "items": {"dress": item_dress, "shoes": item_shoes},
+    "items": {"dress": item_dress, "shoes": item_shoes, "red notebook": item_labnote2},
 
     "entities": {}
 }
@@ -40,7 +40,7 @@ room_armory = {
     "description":
     """There's a secret armoury behind locker 16, who knew?
 This must be for emergencies. All but one the cabinets that line all 4 walls
-are locked and require a keycode to open.""",
+are locked and require a keycode to open. To the east is the hole in the wall that leads back to the changing area""",
 
     "exits": {"east": "Changing Area"},
 
@@ -58,7 +58,7 @@ storage area for test subjects. The glass tube in the middle has been
 smashed. The tube is labelled, "Prototype - M. Morgan, 'To all intents
 and purpsoes, a failed test subject'". The southern end of the room is
 lined with cupboards and cabinets. In between the cabinets is the door to
-the stairwell.""",
+the lift.""",
 
     "exits": {"south": "Lift Floor 1"},
 
@@ -77,7 +77,8 @@ The west door leads back to the lab.""",
 
     "exits": {"west": "Laboratory"},
 
-    "items": {"health pack": item_health_pack},
+
+    "items": {"health pack": item_health_pack, "blue notebook": item_labnote3},
 
     "entities": {}
 }
@@ -92,7 +93,7 @@ lying open. The door to the east leads to the lift area.""",
 
     "exits": {"east": "Lift Floor 3"},
 
-    "items": {"red flare": item_red_flare},
+    "items": {"red flare": item_red_flare, "green notebook": item_labnote4},
 
     "entities": {"little boy": entity_little_kid}
 }
@@ -135,7 +136,8 @@ room_stairs = {
 
     "description":
     """This stairwell is looking a bit worse for wear because no one actually
-uses the stairs. Scientists don't tend to be the fittest people.""",
+uses the stairs. Scientists don't tend to be the fittest people. Another stairwell runs west that will take you to the roof.
+The southern stairs lead back to the canteen.""",
 
     "exits": {"west": "Roof", "south": "Canteen"},
 
@@ -163,9 +165,9 @@ room_lift2 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You can also go west from this location.  """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You can also go east from this location.  """,
 
-    "exits": {"down": "Lift Floor 1", "up": "Lift Floor 3", "west": "Laboratory"},
+    "exits": {"down": "Lift Floor 1", "up": "Lift Floor 3", "east": "Laboratory"},
 
     "items": {},
 

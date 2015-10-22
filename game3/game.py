@@ -3,6 +3,7 @@ from player import *
 from items import *
 from gameparser import *
 from entities import *
+from descriptions import *
 import string
 
 
@@ -187,7 +188,6 @@ def print_room(room):
     only one here. Your stomach rumbles, almost in response to the locked door.
     There is a water gun here.
     """
-    cls()
     print("\n" + room["name"].upper() + "\n")
     wrap_print(room["description"] + print_room_items(room) + print_room_entities(room))
 
@@ -425,12 +425,12 @@ def execute_command(command):
             execute_attack(entity_id, item_id)
 
     elif command[0] == "help":
-        print("To move in a given direction type:     go   <DIRECTION>")
-        print("To pick up an item type:               take <ITEM>")
-        print("To drop an item type:                  drop <ITEM>")
-        print("To use an item type:                   use  <ITEM>")
-        print("To look at something of interest type: view <ITEM>")
-        print("to attack a character type:            take <CHARACTER> with <item>")
+        print("To move in a given direction type:     go     <DIRECTION>")
+        print("To pick up an item type:               take   <ITEM>")
+        print("To drop an item type:                  drop   <ITEM>")
+        print("To use an item type:                   use    <ITEM>")
+        print("To look at something of interest type: view   <ITEM>")
+        print("to attack a character type:            attack <CHARACTER> with <item>")
         print("To quit the game type:                 quit\n")
         wrap_print("""Verb variations are supported, so 'run south', or 'inspect item' are valid inputs.""")
         wrap_print("""Items and characters with multiple words in their name are also supported like regular items.""")
@@ -475,6 +475,10 @@ def move(exits, direction):
     """
     return rooms[exits[direction]]
 
+# def music():
+#     import winsound
+#     winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
+
 
 # TODO create win conditon
 
@@ -499,13 +503,20 @@ def advance_move():
 
 # This is the entry point of our program
 def main():
-    print("\n**********************************************************************\n*"
-          " New to this style of games?!, input ('help') to get some           *\n*"
-          " instructions for playing this game.                                *"
-          "\n**********************************************************************")
-    print_room(current_room)
+    first_iteration = True
+    cls()
+    wrap_print(start_game)
+    print("")
+    wrap_print("""You regain conciousness, eyes struggling to open, you can't
+remember what happened, you can't remember your name, why you are here, nothing.""")
+    # music()
     # Main game loop
     while playing:
+        if not first_iteration:
+            cls()
+        else:
+            first_iteration = False
+        print_room(current_room)
         # Show the menu with possible actions and ask the player
         print("")
         command = menu(current_room["exits"], current_room["items"], inventory)
