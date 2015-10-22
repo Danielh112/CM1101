@@ -17,7 +17,6 @@ to the east (Infirmary) and north (Changing Area) remain untouched.""",
               "computer": item_computer},
 
     "entities": {"zombie": entity_zombie}
-    # TODO Remove zombie
 }
 
 room_changingarea = {
@@ -138,7 +137,7 @@ room_stairs = {
     """This stairwell is looking a bit worse for wear because no one actually
 uses the stairs. Scientists don't tend to be the fittest people.""",
 
-    "exits": {"west": "Roof"},
+    "exits": {"west": "Roof", "south":"Canteen"},
 
     "items": {"batteries": item_batteries},
 
