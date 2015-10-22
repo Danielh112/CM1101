@@ -20,7 +20,7 @@ verbs = {
     "attack": ["attack", "kill", "ambush", "assail", "charge", "harm", "hurt"],
 
     "look": ["look", "stare", "view", "notice", "glance", "admire", "study",
-             "gaze", "inspect", "scout", "scan", "survey", "examine"],
+             "gaze", "inspect", "scout", "scan", "survey", "examine", "read"],
 
     "use": ["use", "operate", "work"]
 }
@@ -188,6 +188,7 @@ def print_room(room):
     only one here. Your stomach rumbles, almost in response to the locked door.
     There is a water gun here.
     """
+    cls()
     print("\n" + room["name"].upper() + "\n")
     wrap_print(room["description"] + print_room_items(room) + print_room_entities(room))
 
@@ -383,7 +384,9 @@ def execute_command(command):
         if len(command) <= 1:
             wrap_print("use what?")
         else:
-            item_id = get_multi_word_string(command, items)
+            item_id = get_multi_word_string(command, current_room["items"])
+            if item_id is False:
+                item_id = get_multi_word_string(command, inventory)
             execute_use(item_id)
 
     elif command[0] in verbs["look"]:
@@ -394,7 +397,9 @@ def execute_command(command):
         elif command[1] in nouns["self"]:
                 print_condition()
         else:
-            item_id = get_multi_word_string(command, items)
+            item_id = get_multi_word_string(command, current_room["items"])
+            if item_id is False:
+                item_id = get_multi_word_string(command, inventory)
             entity_name = get_multi_word_string(command, [entity["name"] for entity in current_room["entities"].values()])
             entity_id = entity_get_id_from_name(entity_name, current_room["entities"].values())
             if item_id in inventory.keys():
@@ -431,6 +436,7 @@ def execute_command(command):
         print("To use an item type:                   use    <ITEM>")
         print("To look at something of interest type: view   <ITEM>")
         print("to attack a character type:            attack <CHARACTER> with <item>")
+        print("to :            attack <CHARACTER> with <item>")
         print("To quit the game type:                 quit\n")
         wrap_print("""Verb variations are supported, so 'run south', or 'inspect item' are valid inputs.""")
         wrap_print("""Items and characters with multiple words in their name are also supported like regular items.""")
@@ -480,10 +486,9 @@ def move(exits, direction):
 #     winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
 
 
-# TODO create win conditon
-
 def check_victory():
-    if blue_flare_used:
+    global current_room
+    if current_room["name"] == "Roof":
         return True
 
 
@@ -503,20 +508,10 @@ def advance_move():
 
 # This is the entry point of our program
 def main():
-    first_iteration = True
-    cls()
-    wrap_print(start_game)
-    print("")
-    wrap_print("""You regain conciousness, eyes struggling to open, you can't
-remember what happened, you can't remember your name, why you are here, nothing.""")
     # music()
     # Main game loop
+    print_room(current_room)
     while playing:
-        if not first_iteration:
-            cls()
-        else:
-            first_iteration = False
-        print_room(current_room)
         # Show the menu with possible actions and ask the player
         print("")
         command = menu(current_room["exits"], current_room["items"], inventory)

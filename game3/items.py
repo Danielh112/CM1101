@@ -1,6 +1,5 @@
 from gameparser import wrap_print
 inventory = {}
-
 blue_flare_used = False
 item_red_flare = {
     "id": "red flare",
@@ -13,7 +12,7 @@ item_red_flare = {
 
 
 def blue_flare_use():
-    global blue_flare_used
+    global current_room
     if current_room["name"] == "Roof":
         blue_flare_used = True
         print("The flare shoots of into the sky.")
