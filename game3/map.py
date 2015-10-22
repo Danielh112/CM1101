@@ -13,10 +13,10 @@ to the east (Infirmary) and north (Changing Area) remain untouched.""",
     "exits": {"east": "Infirmary", "north": "Changing Area",
               "west": "Lift Floor 2"},
 
-    "items": {"billy idol cd": item_billy_idol_cd, "saucepan": item_saucepan,
+    "items": {"billy idol cd": item_billy_idol_cd, "clip board": item_clip_board,
               "computer": item_computer},
 
-    "entities": {"zombie": entity_zombie}
+    "entities": {"generic zombie": entity_zombie}
 }
 
 room_changingarea = {
@@ -77,7 +77,7 @@ The west door leads back to the lab.""",
 
     "exits": {"west": "Laboratory"},
 
-    "items": {"medipac": item_medipac},
+    "items": {"health pack": item_health_pack},
 
     "entities": {}
 }
@@ -94,7 +94,7 @@ lying open. The door to the east leads to the lift area.""",
 
     "items": {"red flare": item_red_flare},
 
-    "entities": {"little kid": entity_little_kid}
+    "entities": {"little boy": entity_little_kid}
 }
 
 room_canteen = {
@@ -137,7 +137,7 @@ room_stairs = {
     """This stairwell is looking a bit worse for wear because no one actually
 uses the stairs. Scientists don't tend to be the fittest people.""",
 
-    "exits": {"west": "Roof", "south":"Canteen"},
+    "exits": {"west": "Roof", "south": "Canteen"},
 
     "items": {"batteries": item_batteries},
 

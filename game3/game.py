@@ -4,7 +4,7 @@ from items import *
 from gameparser import *
 from entities import *
 import string
-from operator import itemgetter
+
 
 verbs = {
     "move": ["go", "move", "travel", "run", "walk", "jog", "flee",
@@ -19,14 +19,29 @@ verbs = {
     "attack": ["attack", "kill", "ambush", "assail", "charge", "harm", "hurt"],
 
     "look": ["look", "stare", "view", "notice", "glance", "admire", "study",
-             "gaze", "inspect", "scout", "scan", "survey"],
+             "gaze", "inspect", "scout", "scan", "survey", "examine"],
 
     "use": ["use", "operate", "work"]
 }
 
 nouns = {
-    "inventory": ["inv", "invent", "inventory"]
+    "inventory": ["inv", "invent", "inventory"],
+
+    "self": ["self", "myself", "injuries", "injury"]
 }
+
+
+def print_condition():
+    if health <= 20:
+        wrap_print("You're pretty much dead mate.")
+    elif health <= 40:
+        wrap_print("You have a horrible gash on your lower left leg. If left it'll probably turn septic.")
+    elif health <= 60:
+        wrap_print("You have a few scrapes and cuts but for the most part you're okay.")
+    elif health <= 80:
+        wrap_print("Your clothes are a bit torn and you look a bit grubby, what would your mum say!.")
+    elif health <= 100:
+        wrap_print("You're fine stop complaining.")
 
 
 def list_of_objects(objects):
@@ -101,12 +116,19 @@ def print_room_entities(room):
         entity_descriptions = ""
         for entity in room_entities.values():
             if entity["alive"]:
-                entity_descriptions += entity["description"]
+                entity_descriptions += entity["summary"]
             else:
-                entity_descriptions += "A " + entity["id"] + " corpse lies on the ground."
+                entity_descriptions += "A " + entity["name"] + " corpse lies on the ground."
         return " " + entity_descriptions
     else:
         return " You are by yourself in here."
+
+
+def entity_get_id_from_name(entiy_name, entity_list):
+    for entity in entity_list:
+        if entity["name"] == entiy_name:
+            return entity["id"]
+    return False
 
 
 def print_inventory_items(items):
@@ -165,6 +187,7 @@ def print_room(room):
     only one here. Your stomach rumbles, almost in response to the locked door.
     There is a water gun here.
     """
+    cls()
     print("\n" + room["name"].upper() + "\n")
     wrap_print(room["description"] + print_room_items(room) + print_room_entities(room))
 
@@ -290,9 +313,9 @@ def attack_entity(entity_id, item_id):
     entities[entity_id]["agression"] = 0
     if entities[entity_id]["health"] <= 0:
         entities[entity_id]["alive"] = False
-        wrap_print("You attack the " + entity_id + " with a " + item_id + " and kill it.")
+        wrap_print("You attack the " + entities[entity_id]["name"] + " with a " + item_id + " and kill it.")
     else:
-        wrap_print("You attack the " + entity_id + " with a " + item_id + ". The " + entity_id + " is weakened.")
+        wrap_print("You attack the " + entities[entity_id]["name"] + " with a " + item_id + ".")
 
 
 def entity_attacks(entity_id):
@@ -302,7 +325,7 @@ def entity_attacks(entity_id):
         health -= entities[entity_id]["damage"]
         if health <= 0:
             alive = False
-        wrap_print("The " + entity_id + " injures you.")
+        wrap_print("The " + entities[entity_id]["name"] + " injures you.")
 
 
 def check_entity_attacks():
@@ -313,10 +336,10 @@ def check_entity_attacks():
             else:
                 entity["agression"] -= 1
                 if entity["agression"] == 0:
-                    print("The " + entity["id"] + " becomes enraged.")
+                    print("The " + entity["name"] + " becomes enraged.")
                     entity_attacks(entity["id"])
                 else:
-                    print("The " + entity["id"] + " becomes more agressive.")
+                    print("The " + entity["name"] + " is getting agitated.")
 
 
 def execute_attack(entity_id, item_id):
@@ -337,75 +360,80 @@ def execute_command(command):
         return
 
     if command[0] in verbs["move"]:
-        if len(command) > 1:
-            execute_go(command[1])
-        else:
+        if len(command) <= 1:
             wrap_print("go where?")
+        else:
+            execute_go(command[1])
 
     elif command[0] in verbs["take"]:
-        if len(command) > 1:
-            execute_take(get_multi_word_phrase(command[1:], items))
-        else:
+        if len(command) <= 1:
             wrap_print("Take what?")
+        else:
+            item_id = get_multi_word_string(command, items)
+            execute_take(item_id)
 
     elif command[0] in verbs["drop"]:
-        if len(command) > 1:
-            execute_drop(get_multi_word_phrase(command[1:], items))
-        else:
+        if len(command) <= 1:
             wrap_print("Drop what?")
+        else:
+            item_id = get_multi_word_string(command, items)
+            execute_drop(item_id)
+
+    elif command[0] in verbs["use"]:
+        if len(command) <= 1:
+            wrap_print("use what?")
+        else:
+            item_id = get_multi_word_string(command, items)
+            execute_use(item_id)
 
     elif command[0] in verbs["look"]:
         if len(command) == 1:
             print_room(current_room)
         elif command[1] in nouns["inventory"]:
                 print_inventory_items(inventory)
+        elif command[1] in nouns["self"]:
+                print_condition()
         else:
-            item_id = get_multi_word_phrase(command[1:], items)
-            entity_id = get_multi_word_phrase(command[1:], entities)
-            if (item_id in inventory.keys()):
+            item_id = get_multi_word_string(command, items)
+            entity_name = get_multi_word_string(command, [entity["name"] for entity in current_room["entities"].values()])
+            entity_id = entity_get_id_from_name(entity_name, current_room["entities"].values())
+            if item_id in inventory.keys():
                 wrap_print(items[item_id]["description"])
-            elif (item_id in current_room["items"].keys()):
+            elif item_id in current_room["items"].keys():
                 wrap_print(items[item_id]["description"])
-            elif (entity_id in current_room["entities"].keys()):
-                wrap_print(entities[entity_id]["long description"])
+            elif entity_id in current_room["entities"].keys():
+                wrap_print(entities[entity_id]["description"])
             else:
                 wrap_print("You can not view that.")
 
-    elif command[0] in verbs["use"]:
-        if len(command) > 1:
-            execute_use(get_multi_word_phrase(command[1:], items))
-        else:
-            wrap_print("use what?")
-
     elif command[0] in verbs["attack"]:
-        if len(command) > 1:
-            if command[1] in current_room["entities"].keys():
-                if len(command) > 2:
-                    weapon = get_multi_word_phrase(command[2:], items)
-                    if weapon in inventory.keys():
-                        execute_attack(command[1], weapon)
-                    else:
-                        wrap_print("You do not have a that item.")
-                else:
-                    wrap_print("What with?")
-            else:
-                wrap_print("You cannot attack that.")
-        else:
+        if len(command) > 2:
+            item_id = get_multi_word_string(command, items)
+            entity_name = get_multi_word_string(command, [entity["name"] for entity in current_room["entities"].values()])
+            entity_id = entity_get_id_from_name(entity_name, current_room["entities"].values())
+        if len(command) <= 1:
             wrap_print("attack what?")
+        elif entity_id not in current_room["entities"].keys():
+            wrap_print("You cannot attack that.")
+        elif len(command) <= 2:
+            wrap_print("What with?")
+        elif item_id not in inventory.keys():
+            wrap_print("You do not have a that item.")
+        elif items[item_id]["damage"] == False:
+            wrap_print("You cannot attack using that item.")
+        else:
+            execute_attack(entity_id, item_id)
 
     elif command[0] == "help":
-        if len(command) == 1:
-            print("To move in a given direction type:     go   <DIRECTION>")
-            print("To pick up an item type:               take <ITEM>")
-            print("To drop an item type:                  drop <ITEM>")
-            print("To look at something of interest type: view <ITEM>")
-            print("To use an item type:                   use  <ITEM>")
-            print("to attack a character type:            take <CHARACTER>")
-            print("To quit the game type:                 quit\n")
-            wrap_print("""Verb variations are supported, so 'run south',
-or 'inspect item' are valid inputs.""")
-            wrap_print("""Items and characters with multiple words in their
-name are also supported like regular items.""")
+        print("To move in a given direction type:     go   <DIRECTION>")
+        print("To pick up an item type:               take <ITEM>")
+        print("To drop an item type:                  drop <ITEM>")
+        print("To use an item type:                   use  <ITEM>")
+        print("To look at something of interest type: view <ITEM>")
+        print("to attack a character type:            take <CHARACTER> with <item>")
+        print("To quit the game type:                 quit\n")
+        wrap_print("""Verb variations are supported, so 'run south', or 'inspect item' are valid inputs.""")
+        wrap_print("""Items and characters with multiple words in their name are also supported like regular items.""")
 
     elif command[0] == "quit":
         if len(command) == 1:
@@ -415,17 +443,6 @@ name are also supported like regular items.""")
 
     else:
         wrap_print("That makes no sense.")
-
-
-def get_multi_word_phrase(phrase, list_of_valid_phrases):
-    """This function takes a list of words as input, it then checks combinations
-    of words to see if a valid pharse can be found in list_of_valid_phrases.
-    This allows support for names's with multiple words.
-    """
-    for x in range(len(phrase), 0, -1):
-        if " ".join(phrase[:x]) in list_of_valid_phrases:
-            return " ".join(phrase[:x])
-    return False
 
 
 def menu(exits, room_items, inv_items):
@@ -486,42 +503,11 @@ def main():
           " New to this style of games?!, input ('help') to get some           *\n*"
           " instructions for playing this game.                                *"
           "\n**********************************************************************")
-    print("""
-=====================================================================================
-Lab
-=====================================================================================
-All the work has paid off, you’ve finally cracked it.
-The secret to immortality. Your successful test subject DELETED lies in front of you.
-You are due to present it to the world tomorrow.
-Your team have all gone home but you stayed to make sure everything was optimal.
-It would be a good idea to wake the subject and perform some final checks. It would be
-devastating if something went wrong tomorrow.""")
-
-    activation = str(input(" Activate?!"))
-    if activation == "yes":
-        wrap_print(""" You turn on the life support systems,
-the subject starts to move its fingers and its eyes flash open.
-Something’s wrong…ERROR ERROR ERROR. Red lights are flashing all
-over your displays. Its head jerks up with its eyes staring right at you,
-it begins grunting unintelligibly.The subject destroys the restraints with
-a huge roar, leaving a mangled mess of metal on the floor. It lumbers
-towards you, arm outstretched. The last thing you see is its hand
-clasped around your neck before you fade from conciousness.""")
-    else:
-        wrap_print("""\nYou probably should do some checks anyway.
-You turn on the life support systems,
-the subject starts to move its fingers and its eyes flash open.
-Something’s wrong…ERROR ERROR ERROR. Red lights are flashing all
-over your displays. Its head jerks up with its eyes staring right at you,
-it begins grunting unintelligibly.The subject destroys the restraints with
-a huge roar, leaving a mangled mess of metal on the floor. It lumbers
-towards you, arm outstretched. The last thing you see is its hand
-clasped around your neck before you fade from conciousness.""")
-
     print_room(current_room)
     # Main game loop
     while playing:
         # Show the menu with possible actions and ask the player
+        print("")
         command = menu(current_room["exits"], current_room["items"], inventory)
 
         # Execute the player's command

@@ -1,3 +1,4 @@
+from itertools import chain, combinations
 import textwrap
 import string
 import re
@@ -29,7 +30,7 @@ def filter_words(words, skip_words):
     valid_words = []
     for word in words:
         if not (word in skip_words):
-                valid_words.append(word)
+            valid_words.append(word)
     return valid_words
 
 
@@ -88,3 +89,22 @@ def wrap_text(string):
 
 def wrap_print(string):
     print(wrap_text(string))
+
+
+def all_subsets(ss):
+    return chain(*map(lambda x: combinations(ss, x), range(0, len(ss) + 1)))
+
+
+def get_multi_word_string(word_list, list_of_valid_phrases):
+    """This function takes a list of words as input, it then checks combinations
+    of words to see if a valid pharse can be found in list_of_valid_phrases.
+    This allows support for names's with multiple words.
+    """
+    for subset in all_subsets(word_list):
+        if " ".join(subset) in list_of_valid_phrases:
+            return " ".join(subset)
+    return False
+
+
+def cls():
+    print("\n" * 100)

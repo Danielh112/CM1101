@@ -1,10 +1,12 @@
 from gameparser import wrap_text
+inventory = {}
+
 blue_flare_used = False
 item_red_flare = {
     "id": "red flare",
     "name": "a red flare",
     "description": "You managed to find the red flare. Wow aren't you a special snowflake!",
-    "damage": 0,
+    "damage": False,
     "attainable": True,
     "use": False
 }
@@ -22,7 +24,7 @@ item_blue_flare = {
     "id": "blue flare",
     "name": "a blue flare",
     "description": "You even found the blue flare! Keep up the good work!",
-    "damage": 0,
+    "damage": False,
     "attainable": True,
     "use": False
 }
@@ -40,17 +42,11 @@ south and east. The exit is to the west."""))
     print("\nLooks like a fun game but I should play this one first.")
 
 
-def medipac_use():
-    global health
-    health = 100
-    print("you are fully healed")
-
-
 item_computer = {
     "id": "computer",
     "name": "a computer",
     "description": "It's running an old text-based adventure game, hah I remember when I made my first program.",
-    "damage": 0,
+    "damage": False,
     "attainable": False,
     "use": computer_use
 }
@@ -69,7 +65,7 @@ item_dress = {
     "id": "dress",
     "name": "a little cocktail dress",
     "description": "Wow you found a little pink cocktail dress! It really brings out the colour in your eyes!",
-    "damage": 0,
+    "damage": False,
     "attainable": True,
     "use": False
 
@@ -79,7 +75,7 @@ item_shoes = {
     "id": "shoes",
     "name": "a pair of old shoes",
     "description": "This pair of shoes goes amazingly with the dress!",
-    "damage": 0,
+    "damage": False,
     "attainable": False,
     "use": False
 }
@@ -106,7 +102,7 @@ item_batteries = {
     "id": "batteries",
     "name": "some batteries",
     "description": "Why would you need batteries ?? Hmm, we'll see.",
-    "damage": 0,
+    "damage": False,
     "attainable": True,
     "use": False
 }
@@ -120,13 +116,22 @@ item_water_gun = {
     "use": False
 }
 
-item_medipac = {
-    "id": "medipac",
-    "name": "a medipac",
-    "description": "This medipac could come in handy in the event of a zombie attack! You should keep it safe.",
-    "damage": 0,
+
+def heatlh_pack_use():
+    global health
+    health = 100
+    print("you are fully healed")
+    global inventory
+    del inventory["health pack"]
+
+
+item_health_pack = {
+    "id": "health pack",
+    "name": "a health pack",
+    "description": "This health pack could come in handy in the event of a zombie attack! You should keep it safe.",
+    "damage": False,
     "attainable": True,
-    "use": medipac_use
+    "use": heatlh_pack_use
 }
 
 item_billy_idol_cd = {
@@ -138,11 +143,11 @@ item_billy_idol_cd = {
     "use": False
 }
 
-item_saucepan = {
-    "id": "saucepan",
-    "name": "a saucepan",
-    "description": "this could be used to cook food...or kill zombies, you choose.",
-    "damage": 20,
+item_clip_board = {
+    "id": "clip board",
+    "name": "a clip board",
+    "description": "Made of metal. Good for taking notes ...or killing zombies, you choose.",
+    "damage": 30,
     "attainable": True,
     "use": False
 }
@@ -157,8 +162,8 @@ items = {
     "keys": item_keys,
     "torch": item_torch,
     "batteries": item_batteries,
-    "medipac": item_medipac,
+    "health pack": item_health_pack,
     "billy idol cd": item_billy_idol_cd,
     "water gun": item_water_gun,
-    "saucepan": item_saucepan
+    "clip board": item_clip_board
 }

@@ -6,8 +6,8 @@ entity_zombie = {
     "agression": 3,
     "health": 75,
     "damage": 25,
-    "description": "A zombie stands in the corner of the room.",
-    "long description": """The zombie has blood all down his torn clothes
+    "summary": "A zombie stands in the corner of the room.",
+    "description": """The zombie has blood all down his torn clothes
      he looks sort of familiar."""
 }
 
@@ -20,8 +20,8 @@ entity_old_man = {
     "name": "an old man",
     "health": 75,
     "damage": 25,
-    "description": "There is an old man stood in the corner.",
-    "long description": "How is this old man still alive?"
+    "summary": "There is an old man stood in the corner.",
+    "description": "How is this old man still alive?"
 
 }
 
@@ -33,8 +33,8 @@ entity_zombie_matt = {
     "alive": True,
     "health": 75,
     "damage": 25,
-    "description": "A man in a ripped shirt wanders the room.",
-    "long description": """This man seems familiar..."""
+    "summary": "A man in a ripped shirt wanders the room.",
+    "description": """This man seems familiar..."""
 }
 
 entity_little_kid = {
@@ -45,8 +45,8 @@ entity_little_kid = {
     "alive": True,
     "health": 75,
     "damage": 25,
-    "description": "A little kid with a creepy mask stares at you.",
-    "long description": "I don't remember being that weird when I was younger..."
+    "summary": "A little kid with a creepy mask stares at you.",
+    "description": "I don't remember being that weird when I was younger..."
 }
 
 entity_zombie_electrician = {
@@ -57,8 +57,8 @@ entity_zombie_electrician = {
     "alive": True,
     "health": 75,
     "damage": 25,
-    "description": "A zombie electrician is sat hunched over against the wall.",
-    "long description": "He looks like an electrician. He must've been here when it all happened..."
+    "summary": "A zombie electrician is sat hunched over against the wall.",
+    "description": "He looks like an electrician. He must've been here when it all happened..."
 }
 
 entity_zombie_cleaner = {
@@ -69,12 +69,12 @@ entity_zombie_cleaner = {
     "agression": 3,
     "health": 75,
     "damage": 25,
-    "description": "A zombie stumbles around the room attempting to clean.",
-    "long description": "This cleaner looks tired. She must've been cleaning all day, or maybe it's because she's a zombie."
+    "summary": "A zombie stumbles around the room attempting to clean.",
+    "description": "This cleaner looks tired. She must've been cleaning all day, or maybe it's because she's a zombie."
 }
 
 entities = {
-    "zombie": entity_zombie,
+    "generic zombie": entity_zombie,
     "old man": entity_old_man,
     "zombie co worker": entity_zombie_matt,
     "little kid": entity_little_kid,
