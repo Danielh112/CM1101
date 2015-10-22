@@ -458,6 +458,10 @@ def move(exits, direction):
     """
     return rooms[exits[direction]]
 
+def music():
+    import winsound
+    winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
+
 
 # TODO create win conditon
 def check_victory():
@@ -514,7 +518,7 @@ be devestating if something went wrong tomorrow.""")
         a huge roar, leaving a mangled mess of metal on the floor. It lumbers towards
         you, arm outstretched.""")
 
-
+    music()
     print_room(current_room)
     # Main game loop
     while playing:
