@@ -1,4 +1,5 @@
 from gameparser import wrap_text
+from player import *
 
 item_red_flare = {
     "id": "red flare",
@@ -8,6 +9,15 @@ item_red_flare = {
     "attainable": True,
     "use": False
 }
+
+
+def blue_flare_use():
+    global blue_flare_used
+    if current_room["name"] == "Roof":
+        blue_flare_used = True
+        print("The flare shoots of into the sky.")
+    else:
+        print("You cannot use the flare here.")
 
 item_blue_flare = {
     "id": "blue flare",

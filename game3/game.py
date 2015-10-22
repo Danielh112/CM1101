@@ -460,8 +460,10 @@ def move(exits, direction):
 
 
 # TODO create win conditon
+
 def check_victory():
-    return False
+    if blue_flare_used:
+        return True
 
 
 def advance_move():

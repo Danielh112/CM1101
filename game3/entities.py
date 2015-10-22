@@ -1,6 +1,6 @@
 entity_zombie = {
-    "id": "zombie",
-    "name": "a zombie",
+    "id": "generic zombie",
+    "name": "zombie",
     "alive": True,
     "hostile": True,
     "agression": 3,
@@ -13,7 +13,7 @@ entity_zombie = {
 
 entity_old_man = {
     "id": "old man",
-    "name": "an old man",
+    "name": "old man",
     "alive": True,
     "hostile": False,
     "agression": 3,
@@ -27,7 +27,7 @@ entity_old_man = {
 
 entity_zombie_matt = {
     "id": "zombie co worker",
-    "name": "Dr. Matt the zombie",
+    "name": "zombie",
     "hostile": True,
     "agression": 3,
     "alive": True,
@@ -41,7 +41,7 @@ not to mention it."""
 
 entity_little_kid = {
     "id": "little boy",
-    "name": "a little kid",
+    "name": "little boy",
     "hostile": True,
     "agression": 3,
     "alive": True,
@@ -53,7 +53,7 @@ entity_little_kid = {
 
 entity_zombie_electrician = {
     "id": "zombie electrician",
-    "name": "a zombie electrician",
+    "name": "zombie",
     "hostile": True,
     "agression": 3,
     "alive": True,
@@ -65,7 +65,7 @@ entity_zombie_electrician = {
 
 entity_zombie_cleaner = {
     "id": "zombie cleaner",
-    "name": "a zombie cleaner",
+    "name": "zombie",
     "alive": True,
     "hostile": True,
     "agression": 3,
