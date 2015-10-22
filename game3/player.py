@@ -9,4 +9,3 @@ alive = True
 playing = True
 moves = 0
 valid_move = False
-blue_flare_used = False

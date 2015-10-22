@@ -1,6 +1,5 @@
 from gameparser import wrap_text
-from player import *
-
+blue_flare_used = False
 item_red_flare = {
     "id": "red flare",
     "name": "a red flare",
