@@ -400,7 +400,7 @@ def execute_command(command):
             print("To drop an item type:                  drop <ITEM>")
             print("To look at something of interest type: view <ITEM>")
             print("To use an item type:                   use  <ITEM>")
-            print("to attack a character type:            take <CHARACTER>")
+            print("to attack a character type:            attack <CHARACTER> with <ITEM>")
             print("To quit the game type:                 quit\n")
             wrap_print("""Verb variations are supported, so 'run south',
 or 'inspect item' are valid inputs.""")
@@ -458,6 +458,10 @@ def move(exits, direction):
     """
     return rooms[exits[direction]]
 
+def music():
+    import winsound
+    winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
+
 
 # TODO create win conditon
 
@@ -482,6 +486,7 @@ def advance_move():
 
 # This is the entry point of our program
 def main():
+    print()
     print("\n**********************************************************************\n*"
           " New to this style of games?!, input ('help') to get some           *\n*"
           " instructions for playing this game.                                *"
@@ -495,8 +500,17 @@ The secret to immortality. Your successful test subject DELETED lies in front of
 You are due to present it to the world tomorrow.
 Your team have all gone home but you stayed to make sure everything was optimal.
 It would be a good idea to wake the subject and perform some fianl checks. 
-It would be devastating if something went wrong tomorrow.""")
+It would be devastating if something went wrong tomorrow.
 
+You turn on the life support systems, the subject starts to move its fingers and its eyes flash open.
+
+Something's wrong...
+ERROR ERROR ERROR. Red lights are flashing all over you displays. Its head jerks up with its eyes staring right
+at you, it begins grunting unintelligibly. The subject destroys the restrains with a huge roar, leaving a mangled
+mess of metal on the floor. It lumbers towards you, arm outstretched. The last thing you see is its hand driving into your neck.  """)
+
+    print("You regain conciousness, eyes struggling to open, you can't remember what happened, you can't remember your name, why you are here, nothing.")
+    music()
 
     print_room(current_room)
     # Main game loop

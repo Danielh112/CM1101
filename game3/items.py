@@ -147,6 +147,42 @@ item_saucepan = {
     "use": False
 }
 
+item_labnote1 = {
+    "id": "notebook",
+    "name": "a notebook",
+    "description": """DAY 23\nI'm getting closer, my team and I have been striving towards the secret to extending\nhuman life and there's been a promising chemical cocktail required to keep a person's systems working\nefficiently. It's been dubbed "The Elixir of Life" by my colleagues, I prefer to simply call it\nvorodisone. It's showing great results, beyond our projections, when used on the lab rats. I hope\nwe get approval for a human subject soon, our research can only go so far using animal test\nsubjects. """,
+    "damage": 0,
+    "attainable": False,
+    "use": False
+}
+
+item_labnote2 = {
+    "id": "red notebook",
+    "name": "a red notebook",
+    "description": """DAY 40\nAppoval for human test subjects has finally come through. Fantastic, research has been in\nstasis since the vorodisone breakthrough earlier in the month. Our first test subject is actually an old\nfriend of mine, Matt from university. He volunteered himself, hoping to further my research. Preliminary\nresults don't seem to be as amazing as once hoped, maybe the doses need some fine tuning.""",
+    "damage": 0,
+    "attainable": False,
+    "use": False
+}
+
+item_labnote3 = {
+    "id": "blue notebook",
+    "name": "a blue notebook",
+    "description": """DAY 55\nMy motivation to continue has been completely quashed. Matt accidentally self-administered\n2 doses last week. The large influx of chemicals took a huge toll on his body. He was in intensive care with\nmultiple organ failure, finally succumbing to the pain and suffering yesterday. Before he passed away, he\nmade me promise to continue with my work and actually donated his body to our lab, in effect after his death.\nIt's too distressing for me, seeing an old friend's body being stored in our basement, so I haven't been\ndoing much work, but my colleagues say that they're learning where we went wrong. """,
+    "damage": 0,
+    "attainable": False,
+    "use": False
+}
+
+item_labnote4 = {
+    "id": "green notebook",
+    "name": "a green notebook",
+    "description": """DAY 70\nA new test subject arrived two days ago. They wish to remain anonymous. My motivation\nto finish this has finally returned, I understand it's what Matt would've wanted. My team have ensured\nthat this new balance and dosage of vorodisone will work. Our results are proving to be extremely\npromising, I have actually informed my team that we are ready to present it to the world next week.\nThis could be it, my life's work complete. But at what cost? What effect will this have on the world?""",
+    "damage": 0,
+    "attainable": False,
+    "use": False
+}
+
 items = {
     "computer": item_computer,
     "red flare": item_red_flare,
@@ -160,5 +196,9 @@ items = {
     "medipac": item_medipac,
     "billy idol cd": item_billy_idol_cd,
     "water gun": item_water_gun,
-    "saucepan": item_saucepan
+    "saucepan": item_saucepan,
+    "notebook": item_labnote1,
+    "red notebook": item_labnote2,
+    "blue notebook": item_labnote3,
+    "green notebook": item_labnote4,
 }
