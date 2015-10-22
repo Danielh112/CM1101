@@ -1,3 +1,5 @@
+from gameparser import wrap_text
+
 item_red_flare = {
     "id": "red flare",
     "name": "a red flare",
@@ -19,15 +21,15 @@ item_blue_flare = {
 
 
 def computer_use():
-    print("""
-    You are in a maze of twisty little passages, all alike.
-    Next to you is the School of Computer Science and
-    Informatics reception. The receptionist, Matt Strangis,
-    seems to be playing an old school text-based adventure
-    game on his computer. There are corridors leading to the
-    south and east. The exit is to the west.
-
-    Looks like a fun game but I should play this one first.""")
+    print("You sit down at the computer.\n")
+    print(wrap_text("""
+You are in a maze of twisty little passages, all alike.
+Next to you is the School of Computer Science and
+Informatics reception. The receptionist, Matt Strangis,
+seems to be playing an old school text-based adventure
+game on his computer. There are corridors leading to the
+south and east. The exit is to the west."""))
+    print("\nLooks like a fun game but I should play this one first.")
 
 item_computer = {
     "id": "computer",
@@ -96,14 +98,15 @@ item_batteries = {
     "attainable": True,
     "use": False
 }
+
 item_water_gun = {
-     "id": "water gun",
-     "name": "a water gun",
-     "description": "not the most useful item in the current situation, maybe \
-     you could use it in the event of a very..very small fire?",
-     "damage": 0,
-     "attainable": False,
-     "use": False
+    "id": "water gun",
+    "name": "a water gun",
+    "description": "not the most useful item in the current situation, maybe \
+    you could use it in the event of a very..very small fire?",
+    "damage": 0,
+    "attainable": False,
+    "use": False
 }
 
 item_medipac = {
@@ -131,7 +134,7 @@ item_saucepan = {
     "name": "a saucepan",
     "description": "this could be used to cook food...or kill zombies, \
     you chose.",
-    "damage": 20,
+    "damage": 50,
     "attainable": True,
     "use": False
 }

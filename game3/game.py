@@ -4,24 +4,23 @@ from items import *
 from gameparser import *
 from entities import *
 import string
+from operator import itemgetter
 
 verbs = {
-    "move":   ["go", "move", "travel", "run", "walk", "jog", "flee",
-               "progress", "escape", "journey"],
+    "move": ["go", "move", "travel", "run", "walk", "jog", "flee",
+             "progress", "escape", "journey"],
 
-    "take":   ["take", "collect", "acquire", "attain", "obtain", "carry",
-               "grasp", "clutch", "grip", "snatch", "gain", "grab"],
+    "take": ["take", "collect", "acquire", "attain", "obtain", "carry",
+             "grasp", "clutch", "grip", "snatch", "gain", "grab", "steal"],
 
-    "drop":   ["drop", "dump", "abandon", "release", "relinquish"],
+    "drop": ["drop", "dump", "abandon", "release", "relinquish"],
 
     "attack": ["attack", "kill", "ambush", "assail", "charge", "harm", "hurt"],
 
-    "look":   ["look", "stare", "view", "notice", "glance", "admire", "study",
-               "gaze", "inspect", "scout", "scan", "survey"],
+    "look": ["look", "stare", "view", "notice", "glance", "admire", "study",
+             "gaze", "inspect", "scout", "scan", "survey"],
 
-    "quit":   ["quit"],
-
-    "use":    ["use", "operate", "work"]
+    "use": ["use", "operate", "work"]
 }
 
 nouns = {
@@ -29,64 +28,104 @@ nouns = {
 }
 
 
-def list_of_items(items):
-    """This function takes a list of items (see items.py for the definition) and
-    returns a comma-separated list of item names (as a string). For example:
+def list_of_objects(objects):
+    """This function takes a dictionary of objects and returns a ascendingly sorted
+    comma-separated sentence of object names (as a string).
 
-    >>> list_of_items([item_red_flare, item_dress])
-    'red flare, dress'
+    >>> list_of_objects({"red flare": item_red_flare, "dress": item_dress})
+    'a little cocktail dress and a red flare'
 
-    >>> list_of_items([item_shoes])
-    'item_shoes'
+    >>> list_of_objects({"shoes": item_shoes})
+    'a pair of old shoes'
 
-    >>> list_of_items([])
+    >>> list_of_objects({"keys": item_keys, "batteries": item_batteries, "pistol": item_pistol})
+    'a pistol, a set of keys and some batteries'
+
+    >>> list_of_objects({})
     ''
-
-    >>> list_of_items([item_keys, item_batteries, item_pistol])
-    'keys, batteries, pistol'
     """
-    item_names = []
-    for item in items.values():
-        item_names.append(item["name"])
-
-    if len(item_names) != 1:
-        item_names[-1] = "and " + item_names[-1]
-
-    item_name_string = ", ".join(item_names)
-    return item_name_string
+    # Create a list of item_names.
+    object_name = [obj["name"] for obj in objects.values()]
+    object_name = sorted(object_name)
+    # Create an indexable dictionary for the final sentence.
+    sentence = {}
+    for x in range(0, len(object_name)):
+        # Assign every other word in dictionary an item name.
+        sentence[x * 2] = object_name[x]
+        # Fill in empty entries with joining strings.
+        if x != len(object_name) - 1:
+            sentence[x * 2 + 1] = ", "
+        elif len(object_name) > 1:
+            sentence[x * 2 - 1] = " and "
+    return "".join(sentence.values())
 
 
 def print_room_items(room):
     """This function takes a room as an input and nicely displays a list of items
     found in this room (followed by a blank line). If there are no items in
-    the room, nothing is printed. See map.py for the definition of a room, and
-    items.py for the definition of an item. This function uses list_of_items()
-    to produce a comma-separated list of item names. For example:
-    >>> print_room_items(rooms["Reception"])
-    There is a pack of biscuits, a student handbook here.
-    <BLANKLINE>
+    the room, nothing is printed.
+
     >>> print_room_items(rooms["Laboratory"])
-    <BLANKLINE>
-    >>> print_room_items(rooms["Lift Floor 1"])
-    <BLANKLINE>
+    There is a billy idol cd, a computer and a saucepan here.
+
+    >>> print_room_items(rooms["Changing Area"])
+    There is a little cocktail dress and a pair of old shoes here.
+
+    >>> print_room_items(rooms["Roof"])
+    There is nothing here.
     """
     room_items = room["items"]
     if (len(room_items) != 0):
-        return "There is " + list_of_items(room_items) + " here.\n"
+        return " There is " + list_of_objects(room_items) + " here."
+    else:
+        return " There are no items here."
 
 
-def print_inventory_items():
+def print_room_entities(room):
+    """This function takes a room as an input and nicely displays a list of items
+    found in this room (followed by a blank line). If there are no items in
+    the room, nothing is printed.
+
+    >>> print_room_items(rooms["Laboratory"])
+    There is a billy idol cd, a computer and a saucepan here.
+
+    >>> print_room_items(rooms["Changing Area"])
+    There is a little cocktail dress and a pair of old shoes here.
+
+    >>> print_room_items(rooms["Roof"])
+    There is nothing here.
+    """
+    room_entities = room["entities"]
+    if (len(room_entities) != 0):
+        entity_descriptions = ""
+        for entity in room_entities.values():
+            if entity["alive"]:
+                entity_descriptions += entity["description"]
+            else:
+                entity_descriptions += "A " + entity["id"] + " corpse lies on the ground."
+        return " " + entity_descriptions
+    else:
+        return " You are by yourself in here."
+
+
+def print_inventory_items(items):
     """This function takes a list of inventory items and displays it nicely, in a
     manner similar to print_room_items(). The only difference is in formatting:
-    print "You have ..." instead of "There is ... here.". For example:
-    >>> print_inventory_items(inventory)
-    You have id card, laptop, money.
+    print "You have ..." instead of "There is ... here." and if you do not have
+    any items in your inventory this funciton prints "You don't have anything.".
+
+    >>> print_inventory_items({"billy idol cd": item_billy_idol_cd, "saucepan": item_saucepan})
+    You have a billy idol cd and a saucepan.
+    <BLANKLINE>
+
+    >>> print_inventory_items({"red flare": item_red_flare})
+    You have a red flare.
     <BLANKLINE>
     """
-    if not (len(inventory) == 0):
-        print ("You have " + list_of_items(inventory) + ".\n")
+    if not (len(items) == 0):
+        wrap_print("You have " + list_of_objects(items) + ".\n")
     else:
-        print("You don't have anything.\n")
+        wrap_print("You don't have anything.\n")
 
 
 def print_room(room):
@@ -94,49 +133,39 @@ def print_room(room):
     and description. The room argument is a dictionary with entries "name",
     "description" etc. (see map.py for the definition). The name of the room
     is printed in all capitals and framed by blank lines. Then follows the
-    description of the room and a blank line again. If there are any items
+    description of the room. If there are any items
     in the room, the list of items is printed next followed by a blank line
     (use print_room_items() for this). For example:
 
-    >>> print_room(rooms["Office"])
+    >>> print_room(rooms["Laboratory"])
     <BLANKLINE>
-    THE GENERAL OFFICE
+    LABORATORY
     <BLANKLINE>
-    You are standing next to the cashier's till at
-    30-36 Newport Road. The cashier looks at you with hope
-    in their eyes. If you go west you can return to the
-    Queen's Buildings.
-    <BLANKLINE>
-    There is a pen here.
-    <BLANKLINE>
+    You see flames flicker in the corner of the room. There are holes in the
+    wall, showing exposed wiring. Most of your equipment has been destroyed. The
+    security door to the west of the room has been wrenched open, whereas the doors
+    to the east (Infirmary) and north (Changing Area) remain untouched.
+    There is a billy idol cd, a computer and a saucepan here.
 
-    >>> print_room(rooms["Reception"])
+    >>> print_room(rooms["Changing Area"])
     <BLANKLINE>
-    RECEPTION
+    CHANGING AREA
     <BLANKLINE>
-    You are in a maze of twisty little passages, all alike.
-    Next to you is the School of Computer Science and
-    Informatics reception. The receptionist, Matt Strangis,
-    seems to be playing an old school text-based adventure
-    game on his computer. There are corridors leading to the
-    south and east. The exit is to the west.
-    <BLANKLINE>
-    There is a pack of biscuits, a student handbook here.
-    <BLANKLINE>
+    This must be where the scientists change into their lab gear.
+    Lockers line the west wall, numbered from 1-20. The door to the south leads
+    to the lab.
+    There is a little cocktail dress and a pair of old shoes here.
 
-    >>> print_room(rooms["Admins"])
+    >>> print_room(rooms["Canteen"])
     <BLANKLINE>
-    MJ AND SIMON'S ROOM
+    CANTEEN
     <BLANKLINE>
-    You are leaning agains the door of the systems managers'
-    room. Inside you notice Matt "MJ" John and Simon Jones. They
-    ignore you. To the north is the reception.
-    <BLANKLINE>
-
-    Note: <BLANKLINE> here means that doctest should expect a blank line.
+    The door to the canteen is locked, probably because you seem to be the
+    only one here. Your stomach rumbles, almost in response to the locked door.
+    There is a water gun here.
     """
     print("\n" + room["name"].upper() + "\n")
-    print(room["description"] + print_room_items(room))
+    wrap_print(room["description"] + print_room_items(room) + print_room_entities(room))
 
 
 def exit_leads_to(exits, direction):
@@ -144,12 +173,12 @@ def exit_leads_to(exits, direction):
     exit taken from this dictionary). It returns the name of the room into
     which this exit leads. For example:
 
-    >>> exit_leads_to(rooms["Reception"]["exits"], "south")
-    "MJ and Simon's room"
-    >>> exit_leads_to(rooms["Reception"]["exits"], "east")
-    "your personal tutor's office"
-    >>> exit_leads_to(rooms["Tutor"]["exits"], "west")
-    'Reception'
+    >>> exit_leads_to(rooms["Laboratory"]["exits"], "east")
+    'Infirmary'
+    >>> exit_leads_to(rooms["Changing Area"]["exits"], "south")
+    'Laboratory'
+    >>> exit_leads_to(rooms["Armory"]["exits"], "east")
+    'Changing Area'
     """
     return rooms[exits[direction]]["name"]
 
@@ -161,59 +190,12 @@ def print_exit(direction, leads_to):
 
     GO <EXIT NAME UPPERCASE> to <where it leads>.
 
-    For example:
     >>> print_exit("east", "you personal tutor's office")
     GO EAST to you personal tutor's office.
     >>> print_exit("south", "MJ and Simon's room")
     GO SOUTH to MJ and Simon's room.
     """
-    print("GO " + direction.upper() + " to " + leads_to + ".")
-
-
-def print_menu(exits, room_items, inv_items):
-    """This function displays the menu of available actions to the player. The
-    argument exits is a dictionary of exits as exemplified in map.py. The
-    arguments room_items and inv_items are the items lying around in the room
-    and carried by the player respectively. The menu should, for each exit,
-    call the function print_exit() to print the information about each exit in
-    the appropriate format. The room into which an exit leads is obtained
-    using the function exit_leads_to(). Then, it should print a list of
-    commands related to items: for each item in the room print
-
-    "TAKE <ITEM ID> to take <item name>."
-
-    and for each item in the inventory print
-
-    "DROP <ITEM ID> to drop <item name>."
-
-    For example, the menu of actions available at the Reception may look like
-    this:
-
-    You can:
-    GO EAST to your personal tutor's office.
-    GO WEST to the parking lot.
-    GO SOUTH to MJ and Simon's room.
-    TAKE BISCUITS to take a pack of biscuits.
-    TAKE HANDBOOK to take a student handbook.
-    DROP ID to drop your id card.
-    DROP LAPTOP to drop your laptop.
-    DROP MONEY to drop your money.
-    What do you want to do?
-
-    """
-    print("You can:")
-    # Iterate over available exits
-    for direction in exits:
-        # Print the exit name and where it leads to
-        print_exit(direction, exit_leads_to(exits, direction))
-
-    for item in room_items.values():
-        print("Take " + item["id"].upper() + " to take " + item["name"])
-
-    for item in inv_items.values():
-        print("Drop " + item["id"].upper() + " to drop " + item["name"])
-
-    print("What do you want to do?")
+    wrap_print("GO " + direction.upper() + " to " + leads_to + ".")
 
 
 def is_valid_exit(exits, chosen_exit):
@@ -223,13 +205,13 @@ def is_valid_exit(exits, chosen_exit):
     that the name of the exit has been normalised by the function
     normalise_input(). For example:
 
-    >>> is_valid_exit(rooms["Reception"]["exits"], "south")
+    >>> is_valid_exit(rooms["Laboratory"]["exits"], "east")
     True
-    >>> is_valid_exit(rooms["Reception"]["exits"], "up")
+    >>> is_valid_exit(rooms["Laboratory"]["exits"], "south")
     False
-    >>> is_valid_exit(rooms["Parking"]["exits"], "west")
+    >>> is_valid_exit(rooms["Changing Area"]["exits"], "west")
     False
-    >>> is_valid_exit(rooms["Parking"]["exits"], "east")
+    >>> is_valid_exit(rooms["Changing Area"]["exits"], "south")
     True
     """
     return chosen_exit in exits
@@ -245,70 +227,109 @@ def execute_go(direction):
     if is_valid_exit(current_room["exits"], direction):
         current_room = move(current_room["exits"], direction)
         print_room(current_room)
+        global valid_move
+        valid_move = True
     else:
-        print("You cannot go there")
+        wrap_print("You cannot go there")
 
 
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
-    list of items in the current room to the player's inventory. However, if
+    dictionary of items in the current room to the player's inventory. However, if
     there is no such item in the room, this function prints
     "You cannot take that."
     """
     if (item_id in current_room["items"]) and (items[item_id]["attainable"]):
         inventory[item_id] = current_room["items"][item_id]
         del current_room["items"][item_id]
-        print(inventory[item_id]["description"])
+        wrap_print(inventory[item_id]["description"])
+        global valid_move
+        valid_move = True
     else:
-        print("You cannot take that.")
+        wrap_print("You cannot take that.")
 
 
 def execute_drop(item_id):
     """This function takes an item_id as an argument and moves this item from the
-    player's inventory to list of items in the current room. However, if there
+    player's inventory to dictionary of items in the current room. However, if there
     is no such item in the inventory, this function prints "You cannot drop
     that."
     """
     if (item_id in inventory):
         current_room["items"][item_id] = inventory[item_id]
         del inventory[item_id]
-        print("You dropped " + items[item_id]["name"] + ".")
+        wrap_print("You dropped " + items[item_id]["name"] + ".")
+        global valid_move
+        valid_move = True
     else:
-        print("You cannot drop that.")
+        wrap_print("You cannot drop that.")
 
 
 def execute_use(item_id):
+    """This function takes an item_id as an argument and executes the function
+    associated with the use of the item. If the item has no use, this function
+    prints "You cannot use that." If the item is not in the players inventory or
+    in the room, this fucntion prints "You can't see that in the room."
+    """
     if (item_id in inventory.keys()) or (item_id in current_room["items"].keys()):
         if items[item_id]["use"] != False:
             items[item_id]["use"]()
+            global valid_move
+            valid_move = True
         else:
-            print("You cannot use that.")
+            wrap_print("You cannot use that.")
     else:
-        print("You can't see that in the room.")
+        wrap_print("You can't see that in the room.")
 
 
-def execute_attack(entity_id, item_id):
+def attack_entity(entity_id, item_id):
+    global health
+    entities[entity_id]["health"] -= items[item_id]["damage"]
+    entities[entity_id]["agression"] = 0
+    if entities[entity_id]["health"] <= 0:
+        entities[entity_id]["alive"] = False
+        wrap_print("You attack the " + entity_id + " with a " + item_id + " and kill it.")
+    else:
+        wrap_print("You attack the " + entity_id + " with a " + item_id + ". The " + entity_id + " is weakened.")
+
+
+def entity_attacks(entity_id):
     global health
     global alive
-    if entities[entity_id]["alive"] == False:
-        print("A " + entity_id + " corpse lies on the ground.")
-    else:
-        # Player attacks entity
-        entities[entity_id]["health"] -= items[item_id]["damage"]
-        if entities[entity_id]["health"] <= 0:
-            entities[entity_id]["alive"] = False
-
-        # Entity attacks player
+    if entities[entity_id]["alive"] == True:
         health -= entities[entity_id]["damage"]
         if health <= 0:
             alive = False
+        wrap_print("The " + entity_id + " injures you.")
+
+
+def check_entity_attacks():
+    for entity in current_room["entities"].values():
+        if entity["hostile"] == True:
+            if entity["agression"] == 0:
+                entity_attacks(entity["id"])
+            else:
+                entity["agression"] -= 1
+                if entity["agression"] == 0:
+                    print("The " + entity["id"] + " becomes enraged.")
+                    entity_attacks(entity["id"])
+                else:
+                    print("The " + entity["id"] + " becomes more agressive.")
+
+
+def execute_attack(entity_id, item_id):
+    if entities[entity_id]["alive"] == False:
+        wrap_print("A " + entity_id + " corpse lies on the ground.")
+    else:
+        attack_entity(entity_id, item_id)
+        global valid_move
+        valid_move = True
 
 
 def execute_command(command):
     """This function takes a command (a list of words as returned by
-    normalise_input) and, depending on the type of action (the first word of
-    the command: "go", "take", or "drop"), executes either execute_go,
-    execute_take, or execute_drop, supplying the second word as the argument.
+    normalise_input). The leading word is checked against a list of verbs,
+    and depending on the verb match a command is executed.
     """
     if 0 == len(command):
         return
@@ -317,19 +338,42 @@ def execute_command(command):
         if len(command) > 1:
             execute_go(command[1])
         else:
-            print(command[0] + " where?")
+            wrap_print("go where?")
 
     elif command[0] in verbs["take"]:
         if len(command) > 1:
             execute_take(get_multi_word_phrase(command[1:], items))
         else:
-            print(command[0] + " what?")
+            wrap_print("Take what?")
 
     elif command[0] in verbs["drop"]:
         if len(command) > 1:
             execute_drop(get_multi_word_phrase(command[1:], items))
         else:
-            print(command[0] + " what?")
+            wrap_print("Drop what?")
+
+    elif command[0] in verbs["look"]:
+        if len(command) == 1:
+            print_room(current_room)
+        elif command[1] in nouns["inventory"]:
+                print_inventory_items(inventory)
+        else:
+            item_id = get_multi_word_phrase(command[1:], items)
+            entity_id = get_multi_word_phrase(command[1:], entities)
+            if (item_id in inventory.keys()):
+                wrap_print(items[item_id]["description"])
+            elif (item_id in current_room["items"].keys()):
+                wrap_print(items[item_id]["description"])
+            elif (entity_id in current_room["entities"].keys()):
+                wrap_print(entities[entity_id]["long description"])
+            else:
+                wrap_print("You can not view that.")
+
+    elif command[0] in verbs["use"]:
+        if len(command) > 1:
+            execute_use(get_multi_word_phrase(command[1:], items))
+        else:
+            wrap_print("use what?")
 
     elif command[0] in verbs["attack"]:
         if len(command) > 1:
@@ -337,49 +381,49 @@ def execute_command(command):
                 if len(command) > 2:
                     weapon = get_multi_word_phrase(command[2:], items)
                     if weapon in inventory.keys():
-                        execute_attack(command[1], weapon, items)
+                        execute_attack(command[1], weapon)
                     else:
-                        print("You do not have " + weapon + " .")
+                        wrap_print("You do not have a that item.")
                 else:
-                    print("What with?")
+                    wrap_print("What with?")
             else:
-                print("You cannot " + command[0] + " that.")
+                wrap_print("You cannot attack that.")
         else:
-            print(command[0] + " what?")
+            wrap_print("attack what?")
 
-    elif command[0] in verbs["look"]:
+    elif command[0] == "help":
         if len(command) == 1:
-            print_room(current_room)
-        elif command[1] in nouns["inventory"]:
-                print_inventory_items()
-        else:
-            item_id = get_multi_word_phrase(command[1:], items)
-            if (item_id in inventory.keys()) or (item_id in current_room["items"].keys()):
-                print(items[item_id]["description"])
-            else:
-                print("You can not " + command[0] + " that.")
+            print("To move in a given direction type:     go   <DIRECTION>")
+            print("To pick up an item type:               take <ITEM>")
+            print("To drop an item type:                  drop <ITEM>")
+            print("To look at something of interest type: view <ITEM>")
+            print("To use an item type:                   use  <ITEM>")
+            print("to attack a character type:            take <CHARACTER>")
+            print("To quit the game type:                 quit\n")
+            wrap_print("""Verb variations are supported, so 'run south',
+or 'inspect item' are valid inputs.""")
+            wrap_print("""Items and characters with multiple words in their
+name are also supported like regular items.""")
 
-    elif command[0] in verbs["use"]:
-        if len(command) > 1:
-            execute_use(get_multi_word_phrase(command[1:], items))
-        else:
-            print(command[0] + " what?")
-
-
-    elif command[0] in verbs["quit"]:
+    elif command[0] == "quit":
         if len(command) == 1:
-            print("goodbye!")
+            wrap_print("goodbye!")
             global playing
             playing = False
 
     else:
-        print("This makes no sense.")
+        wrap_print("That makes no sense.")
 
 
 def get_multi_word_phrase(phrase, list_of_valid_phrases):
+    """This function takes a list of words as input, it then checks combinations
+    of words to see if a valid pharse can be found in list_of_valid_phrases.
+    This allows support for names's with multiple words.
+    """
     for x in range(len(phrase), 0, -1):
         if " ".join(phrase[:x]) in list_of_valid_phrases:
             return " ".join(phrase[:x])
+    return False
 
 
 def menu(exits, room_items, inv_items):
@@ -389,7 +433,6 @@ def menu(exits, room_items, inv_items):
     action. The players's input is normalised using the normalise_input()
     function before being returned.
     """
-
     # Read player's input
     user_input = input("> ")
 
@@ -404,27 +447,42 @@ def move(exits, direction):
     dictionary "exits" of avaiable exits, they choose to move towards the exit
     with the name given by "direction". For example:
 
-    >>> move(rooms["Reception"]["exits"], "south") == rooms["Admins"]
+    >>> move(rooms["Laboratory"]["exits"], "north") == rooms["Changing Area"]
     True
-    >>> move(rooms["Reception"]["exits"], "east") == rooms["Tutor"]
+    >>> move(rooms["Changing Area"]["exits"], "south") == rooms["Laboratory"]
     True
-    >>> move(rooms["Reception"]["exits"], "west") == rooms["Office"]
+    >>> move(rooms["Armory"]["exits"], "east") == rooms["Laboratory"]
     False
     """
     # Go to next room
     return rooms[exits[direction]]
 
 
+# TODO create win conditon
 def check_victory():
     return False
 
 
-def check_player_alive():
-    return alive
+def advance_move():
+    global valid_move
+    if valid_move:
+        if check_victory():
+            return True
+        check_entity_attacks()
+        if not alive:
+            wrap_print("You died!")
+            return True
+        global moves
+        moves += 1
+        valid_move = False
 
 
 # This is the entry point of our program
 def main():
+    print("\n**********************************************************************\n*"
+          " New to this style of games?!, input ('help') to get some           *\n*"
+          " instructions for playing this game.                                *"
+          "\n**********************************************************************")
     print_room(current_room)
     # Main game loop
     while playing:
@@ -434,10 +492,7 @@ def main():
         # Execute the player's command
         execute_command(command)
 
-        if check_victory():
-            break
-        if not check_player_alive():
-            print("You died!")
+        if advance_move():
             break
 
 # Are we being run as a script? If so, run main().

@@ -8,8 +8,7 @@ room_lab = {
     """You see flames flicker in the corner of the room. There are holes in the
 wall, showing exposed wiring. Most of your equipment has been destroyed. The
 security door to the west of the room has been wrenched open, whereas the doors
-to the east (Infirmary) and north (Changing Area) remain untouched.
-""",
+to the east (Infirmary) and north (Changing Area) remain untouched.""",
 
     "exits": {"east": "Infirmary", "north": "Changing Area",
               "west": "Lift Floor 2"},
@@ -17,7 +16,8 @@ to the east (Infirmary) and north (Changing Area) remain untouched.
     "items": {"billy idol cd": item_billy_idol_cd, "saucepan": item_saucepan,
               "computer": item_computer},
 
-    "entities": {}
+    "entities": {"zombie": entity_zombie}
+    # TODO Remove zombie
 }
 
 room_changingarea = {
@@ -28,7 +28,7 @@ room_changingarea = {
 Lockers line the west wall, numbered from 1-20. The door to the south leads
 to the lab.""",
 
-    "exits":  {"south": "Laboratory"},
+    "exits": {"south": "Laboratory"},
 
     "items": {"dress": item_dress, "shoes": item_shoes},
 
@@ -39,7 +39,7 @@ room_armory = {
     "name": "Armory",
 
     "description":
-    """There’s a secret armory behind locker 16. Who knew?.
+    """There's a secret armoury behind locker 16, who knew?
 This must be for emergencies. All but one the cabinets that line all 4 walls
 are locked and require a keycode to open.""",
 
@@ -56,8 +56,8 @@ room_basement = {
     "description":
     """Large glass tubes line the northern end of the room. This looks like a
 storage area for test subjects. The glass tube in the middle has been
-smashed. The tube is labelled, “Prototype - M. Morgan, ‘To all intents
-and purposes, a failed test subject’”. The southern end of the room is
+smashed. The tube is labelled, "Prototype - M. Morgan, 'To all intents
+and purpsoes, a failed test subject'". The southern end of the room is
 lined with cupboards and cabinets. In between the cabinets is the door to
 the stairwell.""",
 
@@ -89,8 +89,7 @@ room_lobby = {
     "description":
     """The door to the outside is blocked by large pieces of rubble.
 The reception lies in ruin. One of the drawers is still intact and is
-lying open. The door to the east leads to the lift area.
-""",
+lying open. The door to the east leads to the lift area.""",
 
     "exits": {"east": "Lift Floor 3"},
 
@@ -104,8 +103,7 @@ room_canteen = {
 
     "description":
     """The door to the canteen is locked, probably because you seem to be the
-only one here. Your stomach rumbles, almost in response to the locked door.
-""",
+only one here. Your stomach rumbles, almost in response to the locked door.""",
 
     "exits": {"east": "Lift Floor 4", "north": "Stairs"},
 
@@ -120,8 +118,7 @@ room_roof = {
     "description":
     """The helipad takes up most of the roofspace. Big time executives and
 government officials must use this for lab visits. You see a helicopter
-flying over one of the buildings on the other side of the city.
-""",
+flying over one of the buildings on the other side of the city.s""",
 
     "exits": {"east": "Stairs"},
 
@@ -135,7 +132,7 @@ room_stairs = {
 
     "description":
     """This stairwell is looking a bit worse for wear because no one actually
-uses the stairs. Scientists don't tend to be the fittest people. """,
+uses the stairs. Scientists don't tend to be the fittest people.""",
 
     "exits": {"west": "Roof"},
 
