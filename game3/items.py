@@ -187,6 +187,7 @@ item_labnote4 = {
     "use": False
 }
 
+
 def audioplayer_use():
     print("You turn on the audio player. That voice sounds very familiar.\n")
     wrap_print(""" 'All the work has paid off, I've finally cracked it. The secret to potential immortality.\nOur successful test subject *static* lies in front of me. I am the only one left in the lab, everyone\nelse has gone home to rest. We have a big day tomorrow. I'm about to perform some final checks to make sure\neveything is perfect for our presentation to the government officials tomorrow.'\n 'Turning on life support systems, the subject is responding'\n 'ERROR! ERROR! ERROR!'\n 'What?! What is wrong?!'\n 'No, no no! This cannot be happening, not now!'\n '(unintelligible growls and roars)'\nThe last thing on the recording is a sharp gasp, a huge smash and then...silence...   """)
@@ -219,6 +220,6 @@ items = {
     "notebook": item_labnote1,
     "red notebook": item_labnote2,
     "blue notebook": item_labnote3,
-    "green notebook": item_labnote4
+    "green notebook": item_labnote4,
     "audio player": item_audioplayer
 }
