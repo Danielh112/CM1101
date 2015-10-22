@@ -1,3 +1,5 @@
+from gameparser import wrap_text
+blue_flare_used = False
 item_red_flare = {
     "id": "red flare",
     "name": "a red flare",
@@ -6,6 +8,15 @@ item_red_flare = {
     "attainable": True,
     "use": False
 }
+
+
+def blue_flare_use():
+    global blue_flare_used
+    if current_room["name"] == "Roof":
+        blue_flare_used = True
+        print("The flare shoots of into the sky.")
+    else:
+        print("You cannot use the flare here.")
 
 item_blue_flare = {
     "id": "blue flare",
@@ -18,15 +29,22 @@ item_blue_flare = {
 
 
 def computer_use():
-    print("""
-    You are in a maze of twisty little passages, all alike.
-    Next to you is the School of Computer Science and
-    Informatics reception. The receptionist, Matt Strangis,
-    seems to be playing an old school text-based adventure
-    game on his computer. There are corridors leading to the
-    south and east. The exit is to the west.
+    print("You sit down at the computer.\n")
+    print(wrap_text("""
+You are in a maze of twisty little passages, all alike.
+Next to you is the School of Computer Science and
+Informatics reception. The receptionist, Matt Strangis,
+seems to be playing an old school text-based adventure
+game on his computer. There are corridors leading to the
+south and east. The exit is to the west."""))
+    print("\nLooks like a fun game but I should play this one first.")
 
-    Looks like a fun game but I should play this one first.""")
+
+def medipac_use():
+    global health
+    health = 100
+    print("you are fully healed")
+
 
 item_computer = {
     "id": "computer",
@@ -92,12 +110,13 @@ item_batteries = {
     "attainable": True,
     "use": False
 }
+
 item_water_gun = {
     "id": "water gun",
     "name": "a water gun",
-    "description": "not the most useful item in the current situation, maybe you could use it in the event of a very..very small fire?",
-    "damage": 0,
-    "attainable": False,
+    "description": "Not the most useful item in the current situation, maybe you could use it in the event of a very, very small fire?",
+    "damage": 10,
+    "attainable": True,
     "use": False
 }
 
@@ -107,7 +126,7 @@ item_medipac = {
     "description": "This medipac could come in handy in the event of a zombie attack! You should keep it safe.",
     "damage": 0,
     "attainable": True,
-    "use": False
+    "use": medipac_use
 }
 
 item_billy_idol_cd = {

@@ -1,3 +1,4 @@
+import textwrap
 import string
 import re
 
@@ -79,3 +80,11 @@ def normalise_input(user_input):
     no_punc_lower = no_punc.lower()
     words = re.findall(r"\w+", no_punc_lower)
     return filter_words(words, skip_words)
+
+
+def wrap_text(string):
+    return textwrap.fill(string).strip()
+
+
+def wrap_print(string):
+    print(wrap_text(string))

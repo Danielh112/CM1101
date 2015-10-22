@@ -1,62 +1,82 @@
 entity_zombie = {
-    "id": "zombie",
+    "id": "generic zombie",
+    "name": "zombie",
     "alive": True,
-    "name": "a zombie",
+    "hostile": True,
+    "agression": 3,
     "health": 75,
     "damage": 25,
-    "description": "The zombie looks familiar."
+    "description": "A zombie stands in the corner of the room.",
+    "long description": """The zombie has blood all down his torn clothes
+     he looks sort of familiar."""
 }
 
 entity_old_man = {
     "id": "old man",
+    "name": "old man",
     "alive": True,
+    "hostile": False,
+    "agression": 3,
     "name": "an old man",
     "health": 75,
     "damage": 25,
-    "description": "Why is this old man still alive?"
+    "description": "There is an old man stood in the corner.",
+    "long description": "How is this old man still alive?"
 
 }
 
 entity_zombie_matt = {
-    "id": "matt the zombie",
+    "id": "zombie co worker",
+    "name": "zombie",
+    "hostile": True,
+    "agression": 3,
     "alive": True,
-    "name": "Dr. Matt the zombie",
     "health": 75,
     "damage": 25,
-    "description": "You've turned your best friend and co-worker, Dr. Matt, into a zombie. HE does't look ver happy about that."
+    "description": "A man in a ripped shirt wanders the room.",
+    "long description": """This man seems familiar..."""
 }
 
 entity_little_kid = {
-    "id": "little kid",
+    "id": "little boy",
+    "name": "little boy",
+    "hostile": True,
+    "agression": 3,
     "alive": True,
-    "name": "a little kid",
     "health": 75,
     "damage": 25,
-    "description": "A little boy with a creepy mask. What does he want?"
+    "description": "A little kid with a creepy mask stares at you.",
+    "long description": "I don't remember being that weird when I was younger..."
 }
 
 entity_zombie_electrician = {
     "id": "zombie electrician",
+    "name": "zombie",
+    "hostile": True,
+    "agression": 3,
     "alive": True,
-    "name": "a zombie electrician",
     "health": 75,
     "damage": 25,
-    "description": "He must've been here before the explotion."
+    "description": "A zombie electrician is sat hunched over against the wall.",
+    "long description": "He looks like an electrician. He must've been here when it all happened..."
 }
 
 entity_zombie_cleaner = {
     "id": "zombie cleaner",
+    "name": "zombie",
     "alive": True,
-    "name": "a zombie cleaner",
+    "hostile": True,
+    "agression": 3,
     "health": 75,
     "damage": 25,
-    "description": "This cleaner looks tired. She must've been cleaning all day, or maybe it's because she's a zombie."
+    "description": "A zombie stumbles around the room attempting to clean.",
+    "long description": "This cleaner looks tired. She must've been cleaning all day, or maybe it's because she's a zombie."
 }
 
 entities = {
     "zombie": entity_zombie,
     "old man": entity_old_man,
-    "matt the zombie": entity_zombie_matt,
+    "zombie co worker": entity_zombie_matt,
     "little kid": entity_little_kid,
     "zombie electrician": entity_zombie_electrician,
     "zombie cleaner": entity_zombie_cleaner

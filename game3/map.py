@@ -8,8 +8,7 @@ room_lab = {
     """You see flames flicker in the corner of the room. There are holes in the
 wall, showing exposed wiring. Most of your equipment has been destroyed. The
 security door to the west of the room has been wrenched open, whereas the doors
-to the east (Infirmary) and north (Changing Area) remain untouched.
-""",
+to the east (Infirmary) and north (Changing Area) remain untouched.""",
 
     "exits": {"east": "Infirmary", "north": "Changing Area",
               "west": "Lift Floor 2"},
@@ -17,7 +16,7 @@ to the east (Infirmary) and north (Changing Area) remain untouched.
     "items": {"billy idol cd": item_billy_idol_cd, "saucepan": item_saucepan,
               "computer": item_computer},
 
-    "entities": {"zombie": entity_zombie }
+    "entities": {"zombie": entity_zombie}
 }
 
 room_changingarea = {
@@ -28,7 +27,7 @@ room_changingarea = {
 Lockers line the west wall, numbered from 1-20. The door to the south leads
 to the lab. You notice that locker 16 has come away from the wall leaving a doorway in the west wall""",
 
-    "exits":  {"south": "Laboratory", "west": "Armory"},
+    "exits": {"south": "Laboratory", "west": "Armory"},
 
     "items": {"dress": item_dress, "shoes": item_shoes},
 
@@ -39,7 +38,7 @@ room_armory = {
     "name": "Armory",
 
     "description":
-    """There’s a secret armory behind locker 16. Who knew?.
+    """There's a secret armoury behind locker 16, who knew?
 This must be for emergencies. All but one the cabinets that line all 4 walls
 are locked and require a keycode to open.""",
 
@@ -56,8 +55,8 @@ room_basement = {
     "description":
     """Large glass tubes line the northern end of the room. This looks like a
 storage area for test subjects. The glass tube in the middle has been
-smashed. The tube is labelled, “Prototype - M. Morgan, ‘To all intents
-and purposes, a failed test subject’”. The southern end of the room is
+smashed. The tube is labelled, "Prototype - M. Morgan, 'To all intents
+and purpsoes, a failed test subject'". The southern end of the room is
 lined with cupboards and cabinets. In between the cabinets is the door to
 the stairwell.""",
 
@@ -89,8 +88,7 @@ room_lobby = {
     "description":
     """The door to the outside is blocked by large pieces of rubble.
 The reception lies in ruin. One of the drawers is still intact and is
-lying open. The door to the east leads to the lift area.
-""",
+lying open. The door to the east leads to the lift area.""",
 
     "exits": {"east": "Lift Floor 3"},
 
@@ -137,9 +135,9 @@ room_stairs = {
 
     "description":
     """This stairwell is looking a bit worse for wear because no one actually
-uses the stairs. Scientists don't tend to be the fittest people. """,
+uses the stairs. Scientists don't tend to be the fittest people.""",
 
-    "exits": {"west": "Roof"},
+    "exits": {"west": "Roof", "south":"Canteen"},
 
     "items": {"batteries": item_batteries},
 
@@ -151,7 +149,7 @@ room_lift1 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up a floor? """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up a floor? You can also go west from this location.""",
 
     "exits": {"up": "Lift Floor 2", "west": "Storage Basement"},
 
@@ -165,7 +163,7 @@ room_lift2 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor?  """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You can also go west from this location.  """,
 
     "exits": {"down": "Lift Floor 1", "up": "Lift Floor 3", "west": "Laboratory"},
 
@@ -179,7 +177,7 @@ room_lift3 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You can also go west from this location. """,
 
     "exits": {"down": "Lift Floor 2", "up": "Lift Floor 4", "west": "Lobby"},
 
@@ -193,7 +191,7 @@ room_lift4 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You guessed it! You can go west too. """,
 
     "exits": {"down": "Lift Floor 3", "west": "Canteen"},
 
