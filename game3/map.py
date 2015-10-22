@@ -26,9 +26,9 @@ room_changingarea = {
     "description":
     """This must be where the scientists change into their lab gear.
 Lockers line the west wall, numbered from 1-20. The door to the south leads
-to the lab.""",
+to the lab. You notice that locker 16 has come away from the wall leaving a doorway in the west wall""",
 
-    "exits": {"south": "Laboratory"},
+    "exits": {"south": "Laboratory", "west": "Armory"},
 
     "items": {"dress": item_dress, "shoes": item_shoes},
 
@@ -65,7 +65,7 @@ the stairwell.""",
 
     "items": {"blue flare": item_blue_flare},
 
-    "entities": {}
+    "entities": {"old man": entity_old_man}
 }
 
 room_infirmary = {
@@ -95,7 +95,7 @@ lying open. The door to the east leads to the lift area.""",
 
     "items": {"red flare": item_red_flare},
 
-    "entities": {}
+    "entities": {"little kid": entity_little_kid}
 }
 
 room_canteen = {
@@ -103,7 +103,9 @@ room_canteen = {
 
     "description":
     """The door to the canteen is locked, probably because you seem to be the
-only one here. Your stomach rumbles, almost in response to the locked door.""",
+only one here. Your stomach rumbles, almost in response to the locked door. There is a stairwell to
+the north and the lift to the east.
+""",
 
     "exits": {"east": "Lift Floor 4", "north": "Stairs"},
 
@@ -118,13 +120,15 @@ room_roof = {
     "description":
     """The helipad takes up most of the roofspace. Big time executives and
 government officials must use this for lab visits. You see a helicopter
-flying over one of the buildings on the other side of the city.s""",
+flying over one of the buildings on the other side of the city. The stairwell is on the east side of the
+building.
+""",
 
     "exits": {"east": "Stairs"},
 
     "items": {},
 
-    "entities": {}
+    "entities": {"Dr. Matt the zombie": entity_zombie_matt}
 }
 
 room_stairs = {
@@ -138,7 +142,7 @@ uses the stairs. Scientists don't tend to be the fittest people.""",
 
     "items": {"batteries": item_batteries},
 
-    "entities": {}
+    "entities": {"zombie cleaner": entity_zombie_cleaner}
 }
 
 room_lift1 = {
@@ -146,10 +150,9 @@ room_lift1 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up a floor? You can also go west from this location.""",
 
-    "exits": {"floor 2": "Lift Floor 2", "floor 3": "Lift Floor 3",
-              "floor 4": "Lift Floor 4", "west": "Storage Basement"},
+    "exits": {"up": "Lift Floor 2", "west": "Storage Basement"},
 
     "items": {},
 
@@ -161,10 +164,9 @@ room_lift2 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You can also go west from this location.  """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 3": "Lift Floor 3",
-              "floor 4": "Lift Floor 4", "west": "Laboratory"},
+    "exits": {"down": "Lift Floor 1", "up": "Lift Floor 3", "west": "Laboratory"},
 
     "items": {},
 
@@ -176,14 +178,13 @@ room_lift3 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You can also go west from this location. """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2",
-              "floor 4": "Lift Floor 4", "west": "Lobby"},
+    "exits": {"down": "Lift Floor 2", "up": "Lift Floor 4", "west": "Lobby"},
 
     "items": {},
 
-    "entities": {}
+    "entities": {"zombie electrician": entity_zombie_electrician}
 }
 
 room_lift4 = {
@@ -191,10 +192,9 @@ room_lift4 = {
 
     "description":
     """The lift is pretty unremarkable, it's a lift, what do you expect?.
-There's a keypad beside the door with 4 buttons numbered 1-4. """,
+There's a keypad beside the door with 4 buttons numbered 1-4. Do you want to go up or down a floor? You guessed it! You can go west too. """,
 
-    "exits": {"floor 1": "Lift Floor 1", "floor 2": "Lift Floor 2",
-              "floor 3": "Lift Floor 3", "west": "Canteen"},
+    "exits": {"down": "Lift Floor 3", "west": "Canteen"},
 
     "items": {},
 
@@ -205,7 +205,7 @@ rooms = {
     "Laboratory": room_lab,
     "Changing Area": room_changingarea,
     "Armory": room_armory,
-    "Basement": room_basement,
+    "Storage Basement": room_basement,
     "Infirmary": room_infirmary,
     "Lobby": room_lobby,
     "Canteen": room_canteen,

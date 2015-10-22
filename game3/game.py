@@ -11,7 +11,8 @@ verbs = {
              "progress", "escape", "journey"],
 
     "take": ["take", "collect", "acquire", "attain", "obtain", "carry",
-             "grasp", "clutch", "grip", "snatch", "gain", "grab", "steal"],
+             "grasp", "clutch", "grip", "snatch", "gain", "grab", "steal"
+             "pick", "pickup"],
 
     "drop": ["drop", "dump", "abandon", "release", "relinquish"],
 
@@ -285,6 +286,7 @@ def execute_use(item_id):
 def attack_entity(entity_id, item_id):
     global health
     entities[entity_id]["health"] -= items[item_id]["damage"]
+    entities[entity_id]["hostile"] = True
     entities[entity_id]["agression"] = 0
     if entities[entity_id]["health"] <= 0:
         entities[entity_id]["alive"] = False
@@ -444,7 +446,7 @@ def menu(exits, room_items, inv_items):
 
 def move(exits, direction):
     """This function returns the room into which the player will move if, from a
-    dictionary "exits" of avaiable exits, they choose to move towards the exit
+    dictionary "exits" of available exits, they choose to move towards the exit
     with the name given by "direction". For example:
 
     >>> move(rooms["Laboratory"]["exits"], "north") == rooms["Changing Area"]
@@ -454,7 +456,6 @@ def move(exits, direction):
     >>> move(rooms["Armory"]["exits"], "east") == rooms["Laboratory"]
     False
     """
-    # Go to next room
     return rooms[exits[direction]]
 
 
@@ -483,6 +484,38 @@ def main():
           " New to this style of games?!, input ('help') to get some           *\n*"
           " instructions for playing this game.                                *"
           "\n**********************************************************************")
+    print("""
+=====================================================================================
+Lab
+=====================================================================================
+All the work has paid off, you’ve finally cracked it.
+The secret to immortality. Your successful test subject DELETED lies in front of you.
+You are due to present it to the world tomorrow.
+Your team have all gone home but you stayed to make sure everything was optimal.
+It would be a good idea to wake the subject and perform some final checks. It would be
+devastating if something went wrong tomorrow.""")
+
+    activation = str(input(" Activate?!"))
+    if activation == "yes":
+        wrap_print(""" You turn on the life support systems,
+the subject starts to move its fingers and its eyes flash open.
+Something’s wrong…ERROR ERROR ERROR. Red lights are flashing all
+over your displays. Its head jerks up with its eyes staring right at you,
+it begins grunting unintelligibly.The subject destroys the restraints with
+a huge roar, leaving a mangled mess of metal on the floor. It lumbers
+towards you, arm outstretched. The last thing you see is its hand
+clasped around your neck before you fade from conciousness.""")
+    else:
+        wrap_print("""\nYou probably should do some checks anyway.
+You turn on the life support systems,
+the subject starts to move its fingers and its eyes flash open.
+Something’s wrong…ERROR ERROR ERROR. Red lights are flashing all
+over your displays. Its head jerks up with its eyes staring right at you,
+it begins grunting unintelligibly.The subject destroys the restraints with
+a huge roar, leaving a mangled mess of metal on the floor. It lumbers
+towards you, arm outstretched. The last thing you see is its hand
+clasped around your neck before you fade from conciousness.""")
+
     print_room(current_room)
     # Main game loop
     while playing:
@@ -494,6 +527,7 @@ def main():
 
         if advance_move():
             break
+
 
 # Are we being run as a script? If so, run main().
 # '__main__' is the name of the scope in which top-level code executes.
