@@ -187,7 +187,10 @@ item_labnote4 = {
     "use": False
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e89f351116d664c93479b044222e2e8a0d8991fe
 def audioplayer_use():
     print("You turn on the audio player. That voice sounds very familiar.\n")
     wrap_print(""" 'All the work has paid off, I've finally cracked it. The secret to potential immortality.\nOur successful test subject *static* lies in front of me. I am the only one left in the lab, everyone\nelse has gone home to rest. We have a big day tomorrow. I'm about to perform some final checks to make sure\neveything is perfect for our presentation to the government officials tomorrow.'\n 'Turning on life support systems, the subject is responding'\n 'ERROR! ERROR! ERROR!'\n 'What?! What is wrong?!'\n 'No, no no! This cannot be happening, not now!'\n '(unintelligible growls and roars)'\nThe last thing on the recording is a sharp gasp, a huge smash and then...silence...   """)

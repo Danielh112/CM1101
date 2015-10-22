@@ -484,6 +484,10 @@ def move(exits, direction):
 def music():
     import winsound
     winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
+<<<<<<< HEAD
+=======
+
+>>>>>>> e89f351116d664c93479b044222e2e8a0d8991fe
 
 
 def check_victory():
