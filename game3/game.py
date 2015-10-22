@@ -475,9 +475,9 @@ def move(exits, direction):
     """
     return rooms[exits[direction]]
 
-# def music():
-#     import winsound
-#     winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
+def music():
+    import winsound
+    winsound.PlaySound("This_House.wav", winsound.SND_FILENAME | winsound.SND_ASYNC | winsound.SND_LOOP)
 
 
 # TODO create win conditon

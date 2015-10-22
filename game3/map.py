@@ -14,7 +14,7 @@ to the east (Infirmary) and north (Changing Area) remain untouched.""",
               "west": "Lift Floor 2"},
 
     "items": {"billy idol cd": item_billy_idol_cd, "clip board": item_clip_board,
-              "computer": item_computer, "notebook": item_labnote1},
+              "computer": item_computer, "notebook": item_labnote1, "audio player": item_audioplayer},
 
     "entities": {"generic zombie": entity_zombie}
 }

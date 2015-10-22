@@ -25,7 +25,11 @@ entity_old_man = {
     "health": 75,
     "damage": 25,
     "summary": "There is an old man stood in the corner.",
-    "description": "How is this old man still alive?"
+    "description": """At the end of the room, you see a shadowy hunched figure holding a cane. This old
+    man must be a staff member from one of the other floors. He turns to face you, hearing you move about.
+    You realize that this man isn't exactly 'complete'. One of his legs only goes as far as the knee,
+    past which is just a mangled mess of muscle and bone. Grey tufts of hair still cling to the side of
+    his head that is still present."""
 
 }
 
