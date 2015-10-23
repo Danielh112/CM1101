@@ -1,0 +1,7 @@
+Levenshtein distance (This is for comparing similarities/differences between two strings, do we need this?)
+add support for multiple word commands (Ryan)
+add pygame move display
+add entities and ability to attack entities (Ryan)
+add doctesting
+add searchable items (I'll try this, Aaron)
+add door/passage between rooms (possibility)
